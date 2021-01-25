@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+<a name="h"></a>
+<a href="#t">teorie</a><br>
+<a href="#c">cod</a>
+<br>
+===========
+
+<br>
+
+
+<a name="c">
+
+ <a href="#1">bubbleSort  </a><br/>
+ <a href="#2">qsort  </a><br/>
+ <a href="#3">selectionSort  </a><br/>
+ <a href="#4">shellSort  </a><br/>
+ <a href="#l">insertSort  </a><br/>
+
+<br><br>
+
+<a href="#h">home</a>
+<pre> 
+<a name="1">void bubbleSort(int *a, int n) </a>           <pre/>
+<pre> {         <pre/>
+<pre>   int k, i, t, j;         <pre/>
+<pre>   for (int k = 0; k < n-1; k++)           <pre/>
+<pre>   {           <pre/>
+<pre>       f = 0;          <pre/>
+<pre>       for (int i = 0; i < n - 1; i++)         <pre/>
+<pre>       {           <pre/>
+<pre>           ++;         <pre/>
+<pre>           if (a[i] > a[i + 1])            <pre/>
+<pre>           {           <pre/>
+<pre>               t = a[i];           <pre/>
+<pre>               a[i] = a[i+1];          <pre/>
+<pre>               a[i+1] = t;         <pre/>
+<pre>               t = 1;          <pre/>
+<pre>               ns++;           <pre/>
+<pre>           }           <pre/>
+<pre>       }           <pre/>
+<pre>       if (t==0)   break;          <pre/>
+        
+<pre>   }           <pre/>
+<pre> }         <pre/>
+<pre> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~          <pre/>
+<pre>   for (c = 0; c < n; c++)         <pre/>
+<pre>     scanf("%d", &array[c]);           <pre/>
+ 
+<pre>   for (c = 0 ; c < n - 1; c++)            <pre/>
+<pre>   {           <pre/>
+<pre>     for (d = 0 ; d < n - c - 1; d++)          <pre/>
+<pre>     {         <pre/>
+<pre>       if (array[d] > array[d+1]) /* For decreasing order use < */         <pre/>
+<pre>       {           <pre/>
+<pre>         swap       = array[d];            <pre/>
+<pre>         array[d]   = array[d+1];          <pre/>
+<pre>         array[d+1] = swap;            <pre/>
+<pre>       }           <pre/>
+<pre>     }         <pre/>
+<pre>   }           <pre/>
+<a href="#h">home</a>
+
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+
+
+<pre> 
+<a name="2">int compare_ints(const void *p, const void *q)</a>            <pre/>
+<pre> {         <pre/>
+<pre>     int x = *(const int *)p;          <pre/>
+<pre>     int y = *(const int *)q;          <pre/>
+
+<pre>     /* Avoid return x - y, which can cause undefined behaviour            <pre/>
+<pre>        because of signed integer overflow. */         <pre/>
+<pre>     if (x < y)            <pre/>
+<pre>         return -1;  // Return -1 if you want ascending, 1 if you want descending order.           <pre/>
+<pre>     else if (x > y)           <pre/>
+<pre>         return 1;   // Return 1 if you want ascending, -1 if you want descending order.           <pre/>
+
+<pre>     return 0;         <pre/>
+<pre> }         <pre/>
+
+<pre> /* Sort an array of n integers, pointed to by a. */           <pre/>
+<pre> void sort_ints(int *a, size_t n) {            <pre/>
+<pre>     qsort(a, n, sizeof *a, &compare_ints);            <pre/>
+<pre> }         <pre/>
+
+<a href="#h">home</a>
+
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+
+
+<a href="#h">home</a>
+<pre> 
+<a name="3">int selectionSort(int *a, int n)</a>          <pre/>
+<pre> {         <pre/>
+<pre>   int i, k t, f, imin;            <pre/>
+<pre>   for (i = 0; i < n-1; i++)           <pre/>
+<pre>   {           <pre/>
+<pre>       imin = i;           <pre/>
+<pre>       for (k = imin+1; k < n; k++)            <pre/>
+<pre>       {           <pre/>
+<pre>           f = 0;          <pre/>
+<pre>           if (a[k]<a[imin])           <pre/>
+<pre>           {           <pre/>
+<pre>               f=1;            <pre/>
+<pre>               imin=k;         <pre/>
+<pre>           }           <pre/>
+<pre>           if (f!=0)           <pre/>
+<pre>           {           <pre/>
+<pre>               t = a[k];           <pre/>
+<pre>               a[k]=a[imin];           <pre/>
+<pre>               a[imin]= t;         <pre/>
+<pre>           }           <pre/>
+<pre>       }           <pre/>
+<pre>   }           <pre/>
+<pre> }         <pre/>
+
+<a href="#h">home</a>
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================        
+<a href="#h">home</a> 
+<pre> 
+<a name="4">void shellSort(int *a, int n)</a>         <pre/>
+<pre> {         <pre/>
+<pre>   int step, i, k, t;          <pre/>
+<pre>   step = n/2;         <pre/>
+<pre>   while(step > 0)         <pre/>
+<pre>   {           <pre/>
+<pre>       for (int i = step; i < n; ++i)          <pre/>
+<pre>       {           <pre/>
+<pre>           t = a[i];           <pre/>
+<pre>           for (k = i; k > step && t<a[k-step]; k=k-step)          <pre/>
+<pre>           {           <pre/>
+<pre>               a[k] = a[k-step];           <pre/>
+<pre>               a[k] = t;           <pre/>
+<pre>           }           <pre/>
+<pre>           if (step==2)    step = 1;           <pre/>
+<pre>           else step = step/2.2;           <pre/>
+<pre>       }           <pre/>
+<pre>   }           <pre/>
+<pre> }         <pre/>
+<pre> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         <pre/>
+<pre> void shellsort(int arr[], int num)            <pre/>
+<pre> {         <pre/>
+<pre>     int i, j, k, tmp;         <pre/>
+<pre>     for (i = num / 2; i > 0; i = i / 2)           <pre/>
+<pre>     {         <pre/>
+<pre>         for (j = i; j < num; j++)         <pre/>
+<pre>         {         <pre/>
+<pre>             for(k = j - i; k >= 0; k = k - i)         <pre/>
+<pre>             {         <pre/>
+<pre>                 if (arr[k+i] >= arr[k])           <pre/>
+<pre>                     break;            <pre/>
+<pre>                 else          <pre/>
+<pre>                 {         <pre/>
+<pre>                     tmp = arr[k];         <pre/>
+<pre>                     arr[k] = arr[k+i];            <pre/>
+<pre>                     arr[k+i] = tmp;           <pre/>
+<pre>                 }         <pre/>
+<pre>             }         <pre/>
+<pre>         }         <pre/>
+<pre>     }         <pre/>
+<pre> }         <pre/>
+
+<a href="#h">home</a>
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+=================================================================         
+
+
+<pre> 
+<a name="l">long insertSort(int *a,int n)  </a>       <pre/>
+<pre> {         <pre/>
+<pre> int i, k, t;          <pre/>
+<pre> long nr_i = 0, zx;            <pre/>
+
+<pre>       for(i=1; i<n; i++)          <pre/>
+<pre>       {           <pre/>
+<pre>           zx=a[i];            <pre/>
+<pre>   for(k=i-1; k>=0 && zx<a[k]; k--)            <pre/>
+<pre> {         <pre/>
+<pre>   a[k+1] = a[k];          <pre/>
+<pre> a[k+1] = zx;          <pre/>
+<pre> nr_i++;           <pre/>
+<pre> }         <pre/>
+<pre>   }           <pre/>
+<pre> return nr_i;          <pre/>
+<pre> }         <pre/>
+<a href="#h">home</a>
+
+<a name="h2"></a>
+
+<a name="t"></a>
+<strog>Algoritmi de sortare</strog><br>
+
+<a href="#ins">instertion sort</a>
+<a href="#shell">shell sort</a>
+<a href="#ins">instertion sort</a>
+<a href="#ins">instertion sort</a>
+
+ 
+<br>
+Un algoritm de sortare este un algoritm care pune elementele unei liste într-o anumită ordine. Cel mai des întâlnite sunt ordinea numerică şi ordinea lexicografică.
+
+ <br>
+
+Chiar dacă problema sortării unei liste de elemente pare trivială, ea a fost şi este cercetată în mod foarte serios. Ca rezultat al acestei cercetări s-au elaborat mai mulţi algoritmi de sortare. Primii dintre ei datează de prin anii '50 (bubble sort – 1956), iar cei mai recenţi au apărut cu puţini ani în urmă (library sort – 2004). O asemenea activitate de cercetare este pe deplin justificată deoarece pe de o parte rezolvarea în mod eficient a problemei sortării nu este deloc simplă, iar pe de altă parte sortarea este o operaţie foarte des folosită şi este necesar ca ea să se efectueze într-un mod cât se poate de eficient.
+
+ <br>
+
+Dintre algoritmii de sortare existenţi, vom analiza şi implementa doi, şi anume insertion sort şi shell sort.
+<br><br>
+
+<a href="#h2">teorie</a> <br>
+<a href="#h">home</a>
+<a name="ins">Insertion sort</a>
+<br>
+ 
+
+Algoritmul de sortare prin inserţie construieşte pas cu pas lista de elemente sortate, adăugând la ea câte un element la un moment dat. La fiecare pas un element este extras din din lista iniţială şi este introdus în lista de elemente sortate. Elementul este inserat în poziţia corectă în lista sortată, astfel încât ea să rămână sortată în continuare.
+
+ 
+
+Ideea de principiu este că la pasul k avem deja k-1 numere sortate şi vrem să plasăm elementul k pe poziţia corectă între aceste k-1 numere sortate. Deplasăm spre dreapta toate numerele care sunt mai mari decât elementul k. Astfel se va elibera un loc în tablou, loc în care vom plasa elementul k. Cum toate numerele de la dreapta lui sunt mai mari ca el şi toate numerele de la stânga lui sunt mai mici ca el, rezultă că avem acum k numere sortate şi putem trece la pasul k+1.
+
+ 
+
+Algoritmul insertion sort în pseudocod arată astfel:
+
+ 
+
+<pre> pentru i := 1 pana la N-1<pre/>
+
+<pre>      aux := a[i];<pre/>
+
+<pre>      j := i-1;<pre/>
+
+<pre>      cat timp (j>=0) si (a[j]>aux)<pre/>
+
+<pre>           a[j+1] := a[j];<pre/>
+
+<pre>           j := j-1;<pre/>
+
+<pre>      sfarsit cat timp;<pre/>
+
+<pre>      a[j+1] := aux;<pre/>
+
+<pre> sfarsit pentru;<pre/>
+<br><br>
+
+<a href="#h2">teorie</a> <br>
+<a href="#h">home</a>
+<a name="shell">Shell sort</a>
+<br>
+
+Algoritmul shell sort este o generalizare a algoritmului insertion sort. La algoritmul insertion sort, pentru a insera un nou element în lista de elemente deja sortate, se deplasează fiecare element cu câte o poziţie spre dreapta atât timp cât avem elemente mai mari decât el. Practic fiecare element înaintează spre poziţia sa finală cu câte o poziţie.
+<br>
+ 
+
+Algoritmul shell sort lucrează similar, doar că deplasează elementele spre poziţia finală cu mai mult de o poziţie. Se lucrează în iteraţii. În prima iteraţie se aplică un insertion sort cu salt s1 mai mare decât 1. Asta înseamnă că fiecare element din şirul iniţial este deplasat spre stânga cu câte s1 poziţii atât timp cât întâlneşte elemente mai mari decât el.
+<br>
+ 
+
+În a doua iteraţie se aplică un insertion sort cu un salt s2, mai mic decât s1 şi mai mare decât 1. Din nou fiecare element din şir este deplasat spre stânga cu câte s2 poziţii, atât timp cât întâlneşte elemente mai mari decât el.
+<br>
+ 
+
+Se repetă asemenea iteraţii cu salturi din ce în ce mai mici, s3, s4, etc. Ultima iteraţie se face cu saltul 1. Această ultimă iteraţie este practic un insetion sort clasic.
+<br>
+ 
+
+Principiul este că după fiecare iteraţie şirul devine din ce în ce “mai sortat”. Iar cum algoritmul insertion sort funcţionează cu atât mai repede cu cât şirul este mai sortat, per ansamblu vom obţine o îmbunătăţire de viteză.
+<br>
+
+<a href="#h2">teorie</a> <br>
+<a href="#h">home</a>
+
+
+</body>
+</html>

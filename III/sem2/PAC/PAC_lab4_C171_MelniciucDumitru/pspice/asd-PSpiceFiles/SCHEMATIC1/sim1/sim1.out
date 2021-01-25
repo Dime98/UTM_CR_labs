@@ -1,0 +1,166 @@
+
+**** 06/08/20 15:30:36 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-sim1"  [ C:\Users\37379\Documents\pspice\asd-PSpiceFiles\SCHEMATIC1\sim1.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "sim1.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\SPB_DATA\cdssetup\OrCAD_PSpice\17.4.0\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 50ms 0 0.001 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source ASD
+R_R1         N00245 N00223  200k TC=0,0 
+R_R2         N00223 N00238  100k TC=0,0 
+D_D1         N00245 N00223 D1N4002 
+D_D2         N00245 N00285 D1N4002 
+X_X1         N00238 N00285 0 2N1595
+C_C1         0 N00245  0.01u  TC=0,0 
+V_V1         N00223 0  
++SIN 0 50 50 0 0 0
+
+**** RESUMING sim1.cir ****
+.END
+
+**** 06/08/20 15:30:36 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-sim1"  [ C:\Users\37379\Documents\pspice\asd-PSpiceFiles\SCHEMATIC1\sim1.sim ] 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4002         X_X1.X1.Dgk     X_X1.X1.Dseries X_X1.X1.Delay   
+          IS   14.110000E-09  100.000000E-18   10.000000E-15    1.000000E-12 
+           N    1.984                                                        
+         ISR  100.000000E-12                                                 
+         IKF   94.81                                                         
+          BV  100.1                                                          
+         IBV   10                                                            
+          RS     .03389         5                                .01         
+          TT    4.761000E-06                                                 
+         CJO   51.170000E-12   50.000000E-12                    5.000000E-12 
+          VJ     .3905                                                       
+           M     .2762                                                       
+
+
+               X_X1.X1.Dkarev  X_X1.X1.Dakfwd  X_X1.X1.Dbreak  
+          IS  100.000000E-12   40.000000E-12   10.000000E-15 
+          BV                                   55            
+         IBV                                  100.000000E-09 
+          RS     .01                             .5          
+         CJO    5.000000E-12    5.000000E-12    5.000000E-12 
+
+
+**** 06/08/20 15:30:36 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-sim1"  [ C:\Users\37379\Documents\pspice\asd-PSpiceFiles\SCHEMATIC1\sim1.sim ] 
+
+
+ ****     Voltage Controlled Switch MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_X1.X1.Vswitch 
+         RON     .4          
+        ROFF  454.545500E+03 
+         VON    5            
+        VOFF    1.5          
+
+
+**** 06/08/20 15:30:36 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-sim1"  [ C:\Users\37379\Documents\pspice\asd-PSpiceFiles\SCHEMATIC1\sim1.sim ] 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00223)    0.0000 (N00238)    0.0000 (N00245) 136.6E-21 (N00285) 317.0E-24     
+
+(X_X1.X1.Itot) 22.64E-27              (X_X1.X1.prod)    0.0000                  
+
+(X_X1.X1.dlay1) 106.2E-27             (X_X1.X1.dlay2)-466.7E-27                 
+
+(X_X1.X1.dvdt0)    0.0000             (X_X1.X1.dvdt1)    0.0000                 
+
+(X_X1.X1.dvdt2)    0.0000             (X_X1.X1.gate1) 294.4E-24                 
+
+(X_X1.X1.gate2)    0.0000             (X_X1.X1.gate4)    0.0000                 
+
+(X_X1.X1.anode0)    0.0000            (X_X1.X1.anode2)    0.0000                
+
+(X_X1.X1.break1)-122.5E-18            (X_X1.X1.contot)    0.0000                
+
+(X_X1.X1.condvdt)    0.0000           (X_X1.X1.congate)    0.0000               
+
+(X_X1.X1.conmain)    0.0000           (X_X1.X1.control)-33.70E-21           
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -9.057E-25
+    X_X1.X1.VIak   0.000E+00
+    X_X1.X1.VdVdt   0.000E+00
+    X_X1.X1.VIgf   9.057E-25
+
+    TOTAL POWER DISSIPATION  -0.00E+00  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 06/08/20 15:30:36 ******* PSpice 17.4.0 (Nov 2018) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-sim1"  [ C:\Users\37379\Documents\pspice\asd-PSpiceFiles\SCHEMATIC1\sim1.sim ] 
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .06
+

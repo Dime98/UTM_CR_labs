@@ -1,0 +1,322 @@
+INCLUDE "lpm_divide.inc";
+INCLUDE "lpm_add_sub.inc";
+
+PARAMETERS
+(
+	Width = 16
+);
+SUBDESIGN UAL
+(
+	CO[Width-1..0]		: INPUT;
+	
+	S1[Width-1..0]		: INPUT;
+	S2[Width-1..0]		: INPUT;
+	FI[Width-1..0]		: INPUT;
+	
+	DO[Width-1..0]		: OUTPUT;
+	FO[Width-1..0]		: OUTPUT;
+
+)
+
+VARIABLE R[Width-1..0]: NODE;
+			D:lpm_divide WITH(LPM_WIDTHN=Width, LPM_WIDTHD=Width, LPM_NREPRESENTATION="SIGNED", LPM_DREPRESENTATION="SIGNED");
+			S:lpm_add_sub WITH(LPM_WIDTH=Width, LPM_REPRESENTATION="SIGNED", LPM_DIRECTION="DEFAULT");
+BEGIN
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0
+CASE CO[] IS
+
+	WHEN 0 =>
+		
+		--nop
+		R[]=S1[];
+		FO[]=FI[];
+		
+	WHEN 1 =>
+	
+		--not
+		R[]=!S1[];
+		
+		FO[Width-1..5]=FI[Width-1..5];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+
+		
+	WHEN 1 =>
+	
+		--and
+		R[]=S1[] & S2[];
+		
+		FO[Width-1..5]=FI[Width-1..5];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+	
+	WHEN 2 =>
+	
+		--or	
+		R[]=S1[] # S2[];
+		
+		FO[Width-1..5]=FI[Width-1..5];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+	
+	WHEN 3 =>
+	
+		--xor	
+		R[]=S1[] $ S2[];
+	
+		FO[Width-1..5]=FI[Width-1..5];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+		
+	WHEN 4 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0
+		--als	
+		R[Width-1]=S1[Width-1];
+		R[Width-2..1]=S1[Width-3..0];
+		R[0]=gnd;
+		
+		FO[Width-1..6]=FI[Width-1..6];
+		FO[5]=S1[2];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+		
+	WHEN 5 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0
+		--ars	
+		R[Width-1]=S1[Width-1];
+		R[Width-2..0]=S1[Width-1..1];
+		
+		FO[Width-1..6]=FI[Width-1..6];
+		FO[5]=S1[0];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+		
+	WHEN 6 =>	
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0
+		--lls		
+		R[Width-1..1]=S1[Width-2..0];
+		R[0]=gnd;
+		
+		FO[Width-1..6]=FI[Width-1..6];
+		FO[5]=S1[Width-1];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+		
+	WHEN 7 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0
+		--lrs		
+		R[Width-2..0]=S1[Width-1..1];
+		R[Width-1]=gnd;
+		
+		FO[Width-1..6]=FI[Width-1..6];
+		FO[5]=S1[0];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+		
+	WHEN 8 =>	
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0
+		--cls	
+		R[Width-1..1]=S1[Width-2..0];
+		R[0]=S1[Width-1];
+		
+		FO[Width-1..6]=FI[Width-1..6];
+		FO[5]=S1[Width-1];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+		
+	WHEN 9 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0
+		--crs	
+		R[Width-2..0]=S1[Width-1..1];
+		R[Width-1]=S1[0];
+		
+		FO[Width-1..6]=FI[Width-1..6];
+		FO[5]=S1[0];
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		FO[3..0]=FI[3..0];
+			
+	WHEN 10 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0	
+		--add
+		S.cin=gnd;
+		S.dataa[]=S1[];
+		S.datab[]=S2[];
+		S.add_sub=gnd;
+		R[]=S.result[];
+		FO[5]=S.cout;
+		FO[6]=S.result[Width-1];
+		FO[7]=S.overflow;
+
+		
+		FO[Width-1..8]=FI[Width-1..8];
+		
+		--zero
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		
+		--parity
+		
+		--others
+		FO[3..0]=FI[3..0];
+		
+	WHEN 11 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0	
+		--sub
+		S.cin=gnd;
+		S.dataa[]=S1[];
+		S.datab[]=S2[];
+		S.add_sub=vcc;
+		R[]=S.result[];
+		FO[5]=S.cout;
+		FO[6]=S.result[Width-1];
+		FO[7]=S.overflow;
+
+		
+		FO[Width-1..8]=FI[Width-1..8];
+		
+		--zero
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		
+		--parity
+		
+		--others
+		FO[3..0]=FI[3..0];
+				
+	
+	WHEN 12 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0	
+		--mul	
+		R[]=S1[]*S2[];				
+	
+	WHEN 13 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0	
+	--div	
+	D.numer[]=S1[];
+	D.denom[]=S2[];
+	R[]=D.quotient[];
+	
+	WHEN 14 =>	
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0	
+		--adc
+		S.cin=FI[5];
+		S.dataa[]=S1[];
+		S.datab[]=S2[];
+		S.add_sub=gnd;
+		R[]=S.result[];
+		FO[5]=S.cout;
+		FO[6]=S.result[Width-1];
+		FO[7]=S.overflow;
+
+		
+		FO[Width-1..8]=FI[Width-1..8];
+		
+		--zero
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		
+		--parity
+		
+		--others
+		FO[3..0]=FI[3..0];
+		
+	WHEN 15 =>
+--...............7	6		5		4		3			2			1		0
+--flags: ........owr	sign	carry	zero	parity	error		int1	int0	
+		--subc
+		S.cin=FI[5];
+		S.dataa[]=S1[];
+		S.datab[]=S2[];
+		S.add_sub=vcc;
+		R[]=S.result[];
+		FO[5]=S.cout;
+		FO[6]=S.result[Width-1];
+		FO[7]=S.overflow;
+
+		
+		FO[Width-1..8]=FI[Width-1..8];
+		
+		--zero
+		IF R[]==0 THEN
+			FO[4]=vcc;
+		ELSE
+			FO[4]=gnd;
+		END IF;
+		
+		--parity
+		
+		--others
+		FO[3..0]=FI[3..0];
+		
+	WHEN OTHERS =>
+	
+		R[]=S1[];
+		Fo[]=FI[];
+		
+END CASE;
+
+
+DO[]=R[];
+
+END;

@@ -1,0 +1,75 @@
+@keyframes walk {
+    0% 	 { background-position: 0px; }
+    100% { background-position: -1024px; }
+}
+
+@keyframes cshoot {
+    form {background-position: 0px; }
+    to   {background-position: -2560px; }
+}
+
+@keyframes shoot {
+    form {background-position: 0px; }
+    to   {background-position: -1408px; }
+}
+
+@keyframes dead {
+    form {background-position: 0px; }
+    to   {background-position: -4736px; }
+}
+
+.crouch {
+    height: 128px;
+    width: 128px;
+    background: url("../img/crouch.png");
+    animation: walk 0.8s steps(8) infinite;
+}
+
+.crouch_Idle {
+    height: 128px;
+    width: 128px;
+    background: url("../img/crouch_Idle.png");
+    animation: walk 1.3s steps(8) infinite;
+}
+
+.crouchShoot {
+    height: 128px;
+    width: 128px;
+    background: url("../img/ShootBelt.png");
+    animation: cshoot 1.9s steps(20) infinite;
+}
+
+.dead {
+    height: 128px;
+    width: 128px;
+    background: url("../img/dead.png");
+    animation: dead 2.3s steps(37) infinite;
+}
+
+.idle {
+    height: 128px;
+    width: 128px;
+    background: url("../img/idle.png");
+    animation: walk 1s steps(8) infinite;
+}
+
+.jump {
+    height: 128px;
+    width: 128px;
+    background: url("../img/jump.png");
+    animation: walk 0.6s steps(8) infinite;
+}
+
+.shoot {
+    height: 128px;
+    width: 128px;
+    background: url("../img/shootNoEyes.png");
+    animation: shoot 1s steps(11) infinite;
+}
+
+.walk {
+    height: 128px;
+    width: 128px;
+    background: url("../img/walk.png");
+    animation: walk 0.5s steps(8) infinite;
+}

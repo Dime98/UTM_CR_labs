@@ -1,0 +1,145 @@
+INCLUDE "lpm_decode.inc";
+INCLUDE "lpm_mux.inc";
+
+PARAMETERS
+(
+	NrProc = 4,
+	Width  = 4
+);
+
+
+
+SUBDESIGN RAM
+(
+
+--	INRAM[0..2^Width-1][Width-1..0]: Input;
+	
+	DI  [1..NrProc][Width-1..0]	 : INPUT;	-- resultatu de la ual
+	
+	FI  [1..NrProc][Width-1..0]	 : INPUT;	-- fanione de iesire de la ual
+	
+	AS1 [1..NrProc][Width-1..0]	 : INPUT; 	-- adresa sursa 1
+	S1  [1..NrProc][Width-1..0]	 : OUTPUT;	-- sursa 1
+	
+	AS2 [1..NrProc][Width-1..0]	 : INPUT;	-- adresa sursa 2
+	S2  [1..NrProc][Width-1..0]	 : OUTPUT;	-- sursa 2
+	
+	AFO [1..NrProc][Width-1..0]	 : INPUT;	-- adresa fanioanelor de intrare a ual
+	
+	AI  [1..NrProc][Width-1..0]	 : INPUT; 	-- adresa intrsuciunii
+ 
+--	EN  [2^Width-1..0]	     		 : INPUT;
+	
+	CLK									 : INPUT;
+	
+	FO  [1..NrProc][Width-1..0]	 : OUTPUT;	-- fanioane de intrare a ual
+	
+	INSTR[1..NrProc][7*Width-1..0] : OUTPUT; 	-- instructiunile
+-- 	CO[1..NrProc][Width-1..0]	 : OUTPUT;
+	
+)
+
+VARIABLE RAM[2^Width-1..0][Width-1..0]:DFFE;
+
+			ADI[1..NrProc][Width-1..0] :NODE; -- adresa datelor de mem in
+			AFI[1..NrProc][Width-1..0] :NODE; -- adresa fanioanelor de in
+			
+			RAMIN[0..2^Width]:lpm_mux WITH(LPM_WIDTH = Width, LPM_SIZE = 2*NrProc, LPM_WIDTHS = CEIL(LOG2(2*NrProc))); --mux pu date de intrare si fanioane
+			
+			S1AD[1..NrProc]:lpm_mux WITH(LPM_WIDTH = Width, LPM_SIZE = 2^Width, LPM_WIDTHS = CEIL(LOG2(2^Width))); --mux pu date
+			S2AD[1..NrProc]:lpm_mux WITH(LPM_WIDTH = Width, LPM_SIZE = 2^Width, LPM_WIDTHS = CEIL(LOG2(2^Width)));
+			FOAD[1..NrProc]:lpm_mux WITH(LPM_WIDTH = Width, LPM_SIZE = 2^Width, LPM_WIDTHS = CEIL(LOG2(2^Width)));
+			INAD[1..NrProc]:lpm_mux WITH(LPM_WIDTH = Width*7, LPM_SIZE = 2^Width, LPM_WIDTHS = CEIL(LOG2(2^Width))); -- adresa instructiei
+
+			
+BEGIN
+
+		DEFAULTS
+			RAM[][].ena = GND;
+		END DEFAULTS;
+		
+		RAM[2^Width-1..0][Width-1..0].clk = clk;
+
+		
+		
+		-- for pu instructiune
+		FOR i IN 1 TO NrProc GENERATE
+			
+			INAD[i].sel[] = AI[i][];
+			INSTR[i][]    = INAD[i].result[];
+			
+			
+			FOR j IN 0 TO 2^Width-1 GENERATE 	
+			
+			
+				IF j+6 <= 2^Width-1 GENERATE
+				
+					ADI[i][] = RAM[j+4][]; 
+					AFI[i][] = RAM[j+5][]; 
+			
+					INAD[i].data[j][7*Width-1..6*Width] = RAM[j][];
+					INAD[i].data[j][6*Width-1..5*Width] = RAM[j+1][];
+					INAD[i].data[j][5*Width-1..4*Width] = RAM[j+2][];
+					INAD[i].data[j][4*Width-1..3*Width] = RAM[j+3][];
+					INAD[i].data[j][3*Width-1..2*Width] = RAM[j+4][];
+					INAD[i].data[j][2*Width-1..1*Width] = RAM[j+5][];
+					INAD[i].data[j][1*Width-1..0] 		= RAM[j+6][];
+				
+				ELSE GENERATE
+					INAD[i].data[j][] = GND;
+				END GENERATE;
+				
+			END GENERATE;
+			
+		END GENERATE;
+		
+		
+		
+		
+		
+		-- for pentru sursa de date
+		FOR i IN 1 TO NrProc GENERATE
+		
+			S1AD[i].sel[] = AS1[i][];
+			S1[i][] = S1AD[i].result[];
+			
+			S2AD[i].sel[] = AS2[i][];
+			S2[i][] = S2AD[i].result[];
+			
+			FOAD[i].sel[] = AFO[i][];
+			FO[i][] = FOAD[i].result[];
+			
+			
+			FOR j IN 0 TO 2^Width-1 GENERATE 	
+			
+				S1AD[i].data[j][] = RAM[j][];
+				S2AD[i].data[j][] = RAM[j][];
+				FOAD[i].data[j][] = RAM[j][];	
+				
+			END GENERATE;
+			
+		END GENERATE;
+
+	
+					
+	 	-- maparea intrarilor in memorie
+		FOR i IN 0 TO 2^Width-1 GENERATE
+			RAM[i][] = RAMIN[i].result;
+			
+--			FOR j IN 1 TO NrProc GENERATE
+--				
+--				FOR k IN 0 TO NrProc-1 GENERATE
+--					RAMIN[i].data[k][] = DI[j][];
+--				END GENERATE;
+--				
+----				FOR k IN NrProc TO 2*NrProc-1 GENERATE
+----					RAMIN[i].data[k][] = FI[j][];
+----				END GENERATE;
+--				
+--			END GENERATE;
+			
+		END GENERATE;
+
+
+
+END;

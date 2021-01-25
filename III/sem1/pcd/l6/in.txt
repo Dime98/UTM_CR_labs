@@ -1,0 +1,4 @@
+Designed by: James Gosling
+Latest release: Java 12 (March 19, 2019)
+Java is a general-purpose programming language that is class-based, object-oriented, and designed to have as few implementation dependencies as possible.
+James Arthur Gosling, OC (born May 19, 1955) is a Canadian computer scientist, best known as the founder and lead designer behind the Java programming language.

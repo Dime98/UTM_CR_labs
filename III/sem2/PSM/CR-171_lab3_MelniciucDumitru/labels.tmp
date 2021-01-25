@@ -1,0 +1,28 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.30</VERSION>
+ <DEVICE>ATmega16</DEVICE>
+ <WORKING_DIR>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes\m16def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <Reset><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.asm</FILE><LINE>13</LINE></Reset>
+  <EXT_INT0><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.asm</FILE><LINE>34</LINE></EXT_INT0>
+  <Prog><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.asm</FILE><LINE>31</LINE></Prog>
+  <Jet><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.asm</FILE><LINE>45</LINE></Jet>
+  <Vix><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\New folder\l2test\2.asm</FILE><LINE>41</LINE></Vix>
+ </LABELS>
+</ASSEMBLER_INFO>

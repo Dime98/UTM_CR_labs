@@ -1,0 +1,5 @@
+PARAMETERS {
+	width = 8
+	procNr= 3
+};
+SUBDESIGN 

@@ -1,0 +1,26 @@
+INCLUDE "UAL.inc";
+
+PARAMETERS
+(
+	NrProc = 4;
+	Width = 16
+);
+SUBDESIGN CORS
+(
+	CO[Width-1..0]		: INPUT;
+	
+	S1[Width-1..0]		: INPUT;
+	S2[Width-1..0]		: INPUT;
+	FI[Width-1..0]		: INPUT;
+	
+	DO[Width-1..0]		: OUTPUT;
+	FO[Width-1..0]		: OUTPUT;
+
+)
+
+VARIABLE CORS[NrProc-1..0]: UAL WITH;
+
+BEGIN
+
+
+END;

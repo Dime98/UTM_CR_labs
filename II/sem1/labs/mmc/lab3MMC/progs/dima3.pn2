@@ -1,0 +1,183 @@
+<object class="TclsText" name="Textp1" left="145" top="195" width="14" height="16" group="" text="p1">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsNodeDiscrete" name="p1" left="105" top="195" width="30" height="30" group="" name="p1" size="osNormal" capacity="9999" markers="12">
+  <cost formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textp2" left="325" top="195" width="14" height="16" group="" text="p2">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsNodeDiscrete" name="p2" left="285" top="195" width="30" height="30" group="" name="p2" size="osNormal" capacity="9999" markers="0">
+  <cost formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textp3" left="485" top="195" width="14" height="16" group="" text="p3">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsNodeDiscrete" name="p3" left="445" top="195" width="30" height="30" group="" name="p3" size="osNormal" capacity="9999" markers="0">
+  <cost formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textp4" left="645" top="195" width="14" height="16" group="" text="p4">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsNodeDiscrete" name="p4" left="605" top="195" width="30" height="30" group="" name="p4" size="osNormal" capacity="9999" markers="0">
+  <cost formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textp5" left="805" top="195" width="14" height="16" group="" text="p5">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsNodeDiscrete" name="p5" left="765" top="195" width="30" height="30" group="" name="p5" size="osNormal" capacity="9999" markers="0">
+  <cost formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textt1" left="235" top="205" width="11" height="16" group="" text="t1">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsTransTimed" name="t1" left="195" top="205" width="30" height="10" group="" size="osNormal" angle="90">
+  <guard formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <priority formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <rate formula="RefV*p1_TOKENS" Value_Reference="0,24" Value_Actual="2,88" />
+  <delay formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <reward formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textt2" left="415" top="207,5" width="11" height="16" group="" text="t2">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsTransInstant" name="t2" left="375" top="207,5" width="30" height="5" group="" size="osNormal" angle="90">
+  <guard formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <priority formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <speed formula="RefV" Value_Reference="62" Value_Actual="62" />
+</object>
+<object class="TclsText" name="Textt3" left="565" top="205" width="11" height="16" group="" text="t3">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsTransTimed" name="t3" left="525" top="205" width="30" height="10" group="" size="osNormal" angle="90">
+  <guard formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <priority formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <rate formula="RefV*p3_TOKENS" Value_Reference="3,3" Value_Actual="0" />
+  <delay formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <reward formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textt4" left="765" top="405" width="11" height="16" group="" text="t4">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsTransTimed" name="t4" left="725" top="405" width="30" height="10" group="" size="osNormal" angle="0">
+  <guard formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <priority formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <rate formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <delay formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <reward formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textt5" left="885" top="395" width="11" height="16" group="" text="t5">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsTransTimed" name="t5" left="845" top="395" width="30" height="10" group="" size="osNormal" angle="0">
+  <guard formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <priority formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <rate formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <delay formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <reward formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textt6" left="715" top="205" width="11" height="16" group="" text="t6">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsTransTimed" name="t6" left="675" top="205" width="30" height="10" group="" size="osNormal" angle="90">
+  <guard formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <priority formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <rate formula="RefV*p4_TOKENS" Value_Reference="12,65" Value_Actual="0" />
+  <delay formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <reward formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textt7" left="885" top="205" width="11" height="16" group="" text="t7">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsTransTimed" name="t7" left="845" top="205" width="30" height="10" group="" size="osNormal" angle="90">
+  <guard formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <priority formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <rate formula="RefV*p5_TOKENS" Value_Reference="1" Value_Actual="0" />
+  <delay formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <reward formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsText" name="Textp7" left="485" top="135" width="14" height="16" group="" text="p7">
+  <font name="Arial" size="10" color="-2147483640" style="0" />
+</object>
+<object class="TclsNodeDiscrete" name="p7" left="445" top="135" width="30" height="30" group="" name="p7" size="osNormal" capacity="9999" markers="1">
+  <cost formula="RefV" Value_Reference="1" Value_Actual="1" />
+</object>
+<object class="TclsLinkNormal" name="L1" left="168,5" top="210" width="35,5" height="0" group="" name="L1" src="p1" dst="t1">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="133" y="210" big="1" />
+  <point x="168,5" y="210" big="0" />
+  <point x="204" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L2" left="250" top="210" width="35" height="0" group="" name="L2" src="t1" dst="p2">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="215" y="210" big="1" />
+  <point x="250" y="210" big="0" />
+  <point x="285" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L3" left="350" top="210" width="37" height="0" group="" name="L3" src="p2" dst="t2">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="313" y="210" big="1" />
+  <point x="350" y="210" big="0" />
+  <point x="387" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L4" left="417,5" top="210" width="26,5" height="0" group="" name="L4" src="t2" dst="p3">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="391" y="210" big="1" />
+  <point x="417,5" y="210" big="0" />
+  <point x="444" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L5" left="503,5" top="210" width="30,5" height="0" group="" name="L5" src="p3" dst="t3">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="473" y="210" big="1" />
+  <point x="503,5" y="210" big="0" />
+  <point x="534" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L6" left="574,5" top="210" width="30,5" height="0" group="" name="L6" src="t3" dst="p4">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="544" y="210" big="1" />
+  <point x="574,5" y="210" big="0" />
+  <point x="605" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L7" left="659,5" top="210" width="25,5" height="0" group="" name="L7" src="p4" dst="t6">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="634" y="210" big="1" />
+  <point x="659,5" y="210" big="0" />
+  <point x="685" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L8" left="730" top="210" width="35" height="0" group="" name="L8" src="t6" dst="p5">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="695" y="210" big="1" />
+  <point x="730" y="210" big="0" />
+  <point x="765" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L9" left="823,5" top="210" width="30,5" height="0" group="" name="L9" src="p5" dst="t7">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="793" y="210" big="1" />
+  <point x="823,5" y="210" big="0" />
+  <point x="854" y="210" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L10" left="474" top="150" width="416" height="25,5" group="" name="L10" src="t7" dst="p7">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="864" y="201" big="1" />
+  <point x="877" y="175,5" big="0" />
+  <point x="890" y="150" big="1" />
+  <point x="682" y="150" big="0" />
+  <point x="474" y="150" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L11" left="392" top="184,5" width="28,5" height="24,5" group="" name="L11" src="p7" dst="t2">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="449" y="160" big="1" />
+  <point x="420,5" y="184,5" big="0" />
+  <point x="392" y="209" big="1" />
+</object>
+<object class="TclsLinkNormal" name="L12" left="126" top="222" width="716,5" height="48" group="" name="L12" src="t7" dst="p1">
+  <weight formula="RefV" Value_Reference="1" Value_Actual="1" />
+  <point x="855" y="221" big="1" />
+  <point x="842,5" y="245,5" big="0" />
+  <point x="830" y="270" big="1" />
+  <point x="490" y="270" big="0" />
+  <point x="150" y="270" big="1" />
+  <point x="138" y="246" big="0" />
+  <point x="126" y="222" big="1" />
+</object>
+<simulate />

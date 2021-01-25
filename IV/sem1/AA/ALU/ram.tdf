@@ -1,0 +1,73 @@
+--PARAMETERS {
+--	width = 8
+--	procNr= 3
+--};
+--
+--SUBDESIGN RAM {
+--	
+--	fi[procNr-1..0][width-1..0]  : input;
+--	di[procNr-1..0][width-1..0]  : input;
+--	pci[width-1..0]              : input;
+--	
+--	
+--	fo[procNr-1..0][width-1..0]  : output;
+--	s1[procNr-1..0][width-1..0]  : output;
+--	s2[procNr-1..0][width-1..0]  : output;
+--	
+--	ci[procNr-1..0][width-1..0]   : output;
+--	pco[width-1..0]               : output;
+--	
+--	
+--}
+--
+--begin
+--
+--	variable mem[][]:dffe
+--
+--end;
+
+-- curs
+include "lpm_decode.inc"
+
+
+PARAMETERS {
+	width  = 8,
+	procNr = 3
+};
+
+SUBDESIGN RAM {
+	
+	adi[1..nrProc][width-1..0]   : input;
+	di[procNr-1..0][width-1..0]  : input;
+
+	afi[1..nrProc][width-1..0]	 : input;
+	fi[1..nrProc][width-1..0]	 : input;
+	
+	as1[1..nrProc][width-1..0]   : input;
+	as2[1..nrProc][width-1..0]   : input;
+
+	afo[1..nrProc][width-1..0]   : input;
+	
+
+	clk : input;
+	s1[1..nrProc][width-1..0]   : output;
+	s2[1..nrProc][width-1..0]   : output;
+	
+
+	fo[1..nrProc][width-1..0]   : output;
+	--instr[1..nrProc][7*width-1..0]   : output;
+	co[1..nrProc][width-1..0]   : output;
+	
+}
+
+begin
+
+	variable mem[2^width-1..0][width-1..0]:dffe
+		diad[lmp_decode]:lpm_decode with() --data in decoder
+		fiad[lmp_decode]:lpm_decode with() 
+		
+		s1ad[1..nrProc]:lpm_mux with() 
+		s2ad[1..nrProc]:lpm_mux with() 
+		foad[1..nrProc]:lpm_mux with() 
+		coad[1..nrProc]:lpm_mux with() 
+end;

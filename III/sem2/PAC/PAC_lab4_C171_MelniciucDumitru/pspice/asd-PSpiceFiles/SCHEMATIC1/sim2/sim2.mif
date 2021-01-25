@@ -1,0 +1,3 @@
+ lib=C:\Cadence\SPB_17.4\tools\PSpice\Library\diode.lib, offset=14125, size=182
+ lib=C:\Cadence\SPB_17.4\tools\PSpice\Library\thyristr.lib, offset=4996, size=1094
+ lib=C:\Cadence\SPB_17.4\tools\PSpice\Library\thyristr.lib, offset=2136, size=2859

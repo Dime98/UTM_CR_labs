@@ -1,0 +1,986 @@
+﻿<!DOCTYPE html>
+<html>
+
+
+<a name="home"></a><a href="#main">main</a><br>
+<a href="#protoFunct">protoFunct</a><br>
+					<a href="#funt">functii</a><br>
+
+<body>
+<pre> typedef struct marfa</pre>
+<pre> {</pre>
+<pre>     char name[40];</pre>
+<pre>     char distrib[40];</pre>
+<pre>     int ID;</pre>
+<pre>     int termen;</pre>
+<pre>     float pret;</pre>
+<pre>     struct marfa *next;</pre>
+<pre>     int info;</pre>
+<pre> }marfa;</pre>
+
+<pre> marfa* head = NULL;</pre>
+<br><a name="protoFunct">  </a>
+<pre> <a href="#1"> int create (int n);</pre>  </a>
+<pre> <a href="#2"> void intro (void);</pre>  </a>
+<pre> <a href="#3"> void show (marfa *head);</pre>  </a>
+<pre> <a href="#4"> void show_search(char *s);</pre>  </a>
+<pre> <a href="#5"> marfa * search (char *r);</pre>  </a>
+<pre> <a href="#6"> void swap(marfa *a,marfa *b);</pre>  </a>
+<pre> <a href="#7"> int lenght (void);</pre>  </a>
+<pre> <a href="#8"> void sort (void);</pre>  </a>
+<pre> <a href="#9"> marfa *last (void);</pre>  </a>
+<pre> <a href="#10"> void modify(int id);</pre>  </a>
+<pre> <a href="#11"> void prepend (int id); </pre>  </a>
+<pre> <a href="#12"> void append(int id)</pre>  </a>
+<pre> <a href="#13"> void addEnd ();</pre>  </a>
+<pre> <a href="#14"> void deleteList (int id);</pre>  </a>
+<pre> <a href="#15"> void split (int id, marfa** head2);</pre>  </a>
+<pre> <a href="#16"> void glue(marfa** head2);</pre>  </a>
+<pre> <a href="#17"> void freem();</pre>  </a>
+<pre> <a href="#18"> void save(void);</pre>  </a>
+<pre> <a href="#19"> void load(char* fname);</pre>  </a>
+
+
+
+<pre> ==================================================================</pre>
+<pre> ==================================================================</pre>
+<pre> ==================================================================</pre>
+<pre> ==================================================================</pre>
+<pre> ==================================================================</pre>
+<pre> ==================================================================</pre>
+<pre> ==================================================================</pre>
+
+
+
+<pre> <a name="1"><a name="funt">int create (int n)</a></a></pre>
+<pre> {</pre>
+<pre>     marfa *c, *p;</pre>
+<pre>     int i;</pre>
+
+<pre>     for (i = 0; i < n; i++)</pre>
+<pre>     {</pre>
+<pre>         c = (marfa*) malloc (sizeof(*c));</pre>
+        
+<pre>         if(c == NULL) return 0;</pre>
+        
+<pre>         if(i == 0) </pre>
+<pre>             {</pre>
+<pre>                 head = c;</pre>
+<pre>                 p = c;</pre>
+<pre>             }</pre>
+<pre>         else </pre>
+<pre>             {</pre>
+<pre>                 p  ->  next = c;</pre>
+<pre>                 p = c;</pre>
+<pre>             }</pre>
+<pre>     }</pre>
+<pre>     p  ->  next = head;</pre>
+<pre>     return 1;</pre>
+<pre> }</pre>
+<a href="#home">home</a>
+
+
+<pre> <a name="2">void intro (void)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c; </pre>
+<pre>     c = head;</pre>
+<pre>     int i = 0;</pre>
+    
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         printf("Marfa (%d)\n", i+1);</pre>
+<pre>         printf("Denumire: ");</pre>
+<pre>             scanf("%s", &c -> name);</pre>
+<pre>         printf("Importator: ");</pre>
+<pre>             scanf("%s", &c -> distrib);</pre>
+<pre>         printf("ID: ");</pre>
+<pre>             scanf("%d", &c -> ID);</pre>
+<pre>         printf("Livrare(zile): ");</pre>
+<pre>             scanf("%d", &c -> termen);</pre>
+<pre>         printf("pret: ");</pre>
+<pre>             scanf("%f", &c -> pret);</pre>
+
+<pre>         c = c  ->  next;</pre>
+<pre>         i++; </pre>
+<pre>     }</pre>
+<pre> }</pre>
+<a href="#home">home</a>
+
+
+
+
+<a href="#home">home</a>
+<pre> <a name="3">void show (marfa *head)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head;</pre>
+<pre>     int i = 0;</pre>
+
+<pre>     puts("informatia despre marfa");</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         printf("Marfa(%d)\n",i+1);</pre>
+<pre>         printf("Denumirea: %s  \n", c  ->  name);</pre>
+<pre>         printf("Importator: %s  \n", c  ->  distrib);</pre>
+<pre>         printf("ID: %d  \n", c  ->  ID);</pre>
+<pre>         printf("Livrare(zile): %d  \n", c  ->  termen);</pre>
+<pre>         printf("Pret: %.2f$  \n\n", c  ->  pret);</pre>
+
+<pre>         c = c -> next;</pre>
+<pre>         i++;</pre>
+<pre>         if(c == head)   break;</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+
+
+<a href="#home">home</a>
+<pre> <a name="4">void show_search(char *s)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head;</pre>
+<pre>     int i, k;</pre>
+<pre>     k = 0;  i = 0;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if((strcmp(s, c->name) == 0)    ||  (strcmp(s, c->distrib) == 0))</pre>
+<pre>         {</pre>
+<pre>             printf("Marfa(%d)\n",i+1);</pre>
+<pre>             printf("Denumirea: %s  \n", c -> name);</pre>
+<pre>             printf("Importator: %s  \n", c -> distrib);</pre>
+<pre>             printf("ID: %d  \n", c -> ID);</pre>
+<pre>             printf("Livrare(zile): %d  \n", c -> termen);</pre>
+<pre>             printf("Pret: %.2f$  \n\n", c -> pret);</pre>
+<pre>             k++;</pre>
+<pre>         }</pre>
+<pre>         c = c -> next;</pre>
+<pre>         i++;</pre>
+<pre>     }</pre>
+<pre>     if(k == 0)</pre>
+<pre>         printf("[-] Elementul nu a fost gasit!\n");</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre><a name="6"> marfa * search (char *r)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head;</pre>
+<pre>     int k = 0;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if((strcmp(r, c -> name) == 0)    ||  (strcmp(r, c -> distrib) == 0))</pre>
+<pre>         {</pre>
+<pre>             return c;</pre>
+<pre>             k++;</pre>
+<pre>         }</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre>     if (k == 0) puts("[-] Marfa nu a fost gasita");</pre>
+<pre>     return NULL;    </pre>
+<pre> }</pre>
+
+
+<a href="#home">home</a>
+<pre> <a name="6">void swap(marfa *a,marfa *b)</a></pre>
+<pre> {</pre>
+<pre>     marfa t,*na,*nb;</pre>
+<pre>     na = a -> next;</pre>
+<pre>     nb = b -> next;</pre>
+<pre>     t = *a;</pre>
+<pre>     *a = *b;</pre>
+<pre>     *b = t;</pre>
+<pre>     a -> next = na;</pre>
+<pre>     b -> next = nb;</pre>
+<pre> }</pre>
+
+
+
+
+<a href="#home">home</a>
+<pre> <a name="7">int lenght (void)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c;</pre>
+<pre>     int l;  l = 0;</pre>
+
+<pre>     c = head;</pre>
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         l++;</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre>     return l;</pre>
+<pre> }</pre>
+
+
+<a href="#home">home</a>
+<pre> <a name="8">void sort (void)</a></pre>
+<pre> {</pre>
+<pre>     marfa *a,*b;</pre>
+<pre>     int i, k, l;</pre>
+
+<pre>     l = lenght();</pre>
+
+<pre>     for(i=0;i<l-1;i++)</pre>
+<pre>     for(i = 0; i < l - 1; i++)</pre>
+<pre>     {</pre>
+<pre>         a = head;</pre>
+<pre>         b = a -> next;</pre>
+<pre>         for (k = 0; k < l - 1 - i; k++)</pre>
+<pre>         {</pre>
+<pre>             if(a -> pret < b -> pret)</pre>
+<pre>             {</pre>
+<pre>                 swap(a,b);</pre>
+<pre>             }</pre>
+<pre>             a = a -> next;</pre>
+<pre>             b = b -> next;</pre>
+<pre>         }</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+
+
+<a href="#home">home</a>
+<pre> <a name="9">marfa *last (void)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c;</pre>
+<pre>     c= head;</pre>
+<pre>     while(c -> next)</pre>
+<pre>         c = c -> next;</pre>
+
+<pre>     return c;</pre>
+<pre> }</pre>
+
+
+<a href="#home">home</a>
+<pre> <a name="10">void modify(int id)</a></pre>
+<pre> {</pre>
+<pre>     int l = 0;</pre>
+<pre>     marfa* c = head;</pre>
+<pre>     int i = 0;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if(i + l == id)</pre>
+<pre>         {</pre>
+<pre>             printf("Marfa (%d)\n", i+1);</pre>
+<pre>             printf("Denumire: ");</pre>
+<pre>                 scanf("%s", &c -> name);</pre>
+<pre>             printf("Importator: ");</pre>
+<pre>                 scanf("%s", &c -> distrib);</pre>
+<pre>             printf("ID: ");</pre>
+<pre>                 scanf("%d", &c -> ID);</pre>
+<pre>             printf("Livrare(zile): ");</pre>
+<pre>                 scanf("%d", &c -> termen);</pre>
+<pre>             printf("pret: ");</pre>
+<pre>                 scanf("%f", &c -> pret);</pre>
+<pre>         }</pre>
+<pre>     c = c -> next;</pre>
+<pre>     i++;</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="12">void append(int id)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head;</pre>
+<pre>     marfa *p;</pre>
+<pre>     int i = 0;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if(i == id - 1)</pre>
+<pre>         {</pre>
+<pre>             p = c;</pre>
+<pre>             c = (marfa*) malloc (sizeof(marfa));</pre>
+<pre>             printf("Introduceti datele \n");</pre>
+<pre>             printf("Marfa(%d)\n",i + 2);</pre>
+<pre>             printf("Denumire: ");</pre>
+<pre>                 scanf("%s", &c -> name);</pre>
+<pre>             printf("Importator: ");</pre>
+<pre>                 scanf("%s", &c -> distrib);</pre>
+<pre>             printf("ID: ");</pre>
+<pre>                 scanf("%d", &c -> ID);</pre>
+<pre>             printf("Livrare(zile): ");</pre>
+<pre>                 scanf("%d", &c -> termen);</pre>
+<pre>             printf("pret: ");</pre>
+<pre>                 scanf("%f", &c -> pret);</pre>
+<pre>             c -> next = p -> next;</pre>
+<pre>             p -> next = c;</pre>
+<pre>             break;</pre>
+<pre>         }</pre>
+<pre>         i++;</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="11">void prepend (int id)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c=head,*p;</pre>
+<pre>     int i=0;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if(i == id - 1)</pre>
+<pre>         {</pre>
+<pre>             p = c;</pre>
+<pre>             c = (marfa*) malloc (sizeof(marfa));</pre>
+<pre>             printf("Introduceti datele \n");</pre>
+<pre>             printf("Marfa(%d)\n",i+1);</pre>
+<pre>             printf("Denumire: ");</pre>
+<pre>                 scanf("%s", &c -> name);</pre>
+<pre>             printf("Importator: ");</pre>
+<pre>                 scanf("%s", &c -> distrib);</pre>
+<pre>             printf("ID: ");</pre>
+<pre>                 scanf("%d", &c -> ID);</pre>
+<pre>             printf("Livrare(zile): ");</pre>
+<pre>                 scanf("%d", &c -> termen);</pre>
+<pre>             printf("pret: ");</pre>
+<pre>                 scanf("%f", &c -> pret);</pre>
+
+<pre>             if(p == head)</pre>
+<pre>             {</pre>
+<pre>                 c -> next = head;</pre>
+<pre>                 head = c;</pre>
+<pre>                 break;</pre>
+<pre>             } </pre>
+<pre>             else </pre>
+<pre>             {</pre>
+<pre>                 c -> next = p;</pre>
+<pre>                 i = 0;</pre>
+<pre>                 p = head;</pre>
+<pre>                 while(p) </pre>
+<pre>                 {</pre>
+<pre>                     if(i == id - 2) </pre>
+<pre>                         p -> next = c;</pre>
+
+<pre>                     i++;</pre>
+<pre>                     p = p -> next;</pre>
+<pre>                 }</pre>
+<pre>                 break;</pre>
+<pre>             }</pre>
+<pre>         }</pre>
+<pre>         i++;</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="13">void addEnd ()</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head, *p;</pre>
+<pre>     int i;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if(c -> next == NULL)</pre>
+<pre>         {</pre>
+<pre>             p = c;</pre>
+<pre>             c = (marfa*) malloc (sizeof(marfa));</pre>
+<pre>             printf("Introduceti datele \n");</pre>
+<pre>             printf("Denumire: ");</pre>
+<pre>                 scanf("%s", &c -> name);</pre>
+<pre>             printf("Importator: ");</pre>
+<pre>                 scanf("%s", &c -> distrib);</pre>
+<pre>             printf("ID: ");</pre>
+<pre>                 scanf("%d", &c -> ID);</pre>
+<pre>             printf("Livrare(zile): ");</pre>
+<pre>                 scanf("%d", &c -> termen);</pre>
+<pre>             printf("pret: ");</pre>
+<pre>                 scanf("%f", &c -> pret);</pre>
+
+<pre>             p -> next = c;</pre>
+<pre>             c -> next = NULL;</pre>
+<pre>             break;</pre>
+<pre>         }</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="14">void deleteList (int id)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head,*p;</pre>
+<pre>     int i = 0;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if(i == id - 1)</pre>
+<pre>         {</pre>
+<pre>             if(c == head)</pre>
+<pre>             {</pre>
+<pre>                 head = c -> next;</pre>
+<pre>                 free(c);</pre>
+<pre>                 break;</pre>
+<pre>             } </pre>
+<pre>             else if(c -> next == NULL)</pre>
+<pre>             {</pre>
+<pre>                 p = head;</pre>
+<pre>                 while(p)</pre>
+<pre>                 {</pre>
+<pre>                     if(p -> next == c)</pre>
+<pre>                     {</pre>
+<pre>                         free(c);</pre>
+<pre>                         p -> next=NULL;</pre>
+<pre>                         break;</pre>
+<pre>                     }</pre>
+<pre>                     p = p -> next;</pre>
+<pre>                 }</pre>
+<pre>             } </pre>
+<pre>             else {</pre>
+<pre>                 p = head;</pre>
+<pre>                 while(p)</pre>
+<pre>                 {</pre>
+<pre>                     if(p -> next == c)</pre>
+<pre>                     {                   </pre>
+<pre>                         p -> next = c -> next;</pre>
+<pre>                         free(c);</pre>
+<pre>                         break;</pre>
+<pre>                     }</pre>
+<pre>                     p = p -> next;</pre>
+<pre>                 }</pre>
+<pre>             }</pre>
+<pre>         }</pre>
+<pre>         i++;</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="15">void split (int id, marfa** head2)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head;</pre>
+<pre>     int i = 0;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if(i == id - 1)</pre>
+<pre>         {</pre>
+<pre>             *head2 = c -> next;</pre>
+<pre>             c -> next = NULL;</pre>
+<pre>             break;</pre>
+<pre>         }   </pre>
+<pre>         i++;</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="16">void glue(marfa** head2)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head;</pre>
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         if(c -> next == NULL){</pre>
+<pre>             c -> next = *head2;</pre>
+<pre>             break;</pre>
+<pre>         }</pre>
+<pre>         c = c -> next;  </pre>
+<pre>     }</pre>
+<pre>     *head2 = NULL;</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="17">void freem()</a></pre>
+<pre> {</pre>
+<pre>     marfa *c,*p;</pre>
+<pre>     c = head;</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         p = c;</pre>
+<pre>         c = c -> next;</pre>
+<pre>         free(p);</pre>
+<pre>         if(c == NULL)</pre>
+<pre>         {</pre>
+<pre>             break;</pre>
+<pre>         }</pre>
+<pre>     }</pre>
+<pre>     head = NULL;</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="18">void save(void)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c = head;</pre>
+<pre>     FILE *filePointer = fopen("savedInfo.txt", "wt");</pre>
+
+<pre>     while(c)</pre>
+<pre>     {</pre>
+<pre>         fprintf(filePointer,"Denumirea: %s\n", c -> name);</pre>
+<pre>         fprintf(filePointer,"Importator: %s\n", c -> distrib);</pre>
+<pre>         fprintf(filePointer,"ID: %d\n", c -> ID);</pre>
+<pre>         fprintf(filePointer,"Livrare(zile): %d\n", c -> termen);</pre>
+<pre>         fprintf(filePointer,"Pret: %.2f\n\n", c -> pret);</pre>
+
+<pre>         if(c -> next != NULL)</pre>
+<pre>         {</pre>
+<pre>             fprintf(filePointer, "\n");</pre>
+<pre>         }</pre>
+<pre>         c = c -> next;</pre>
+<pre>     }</pre>
+<pre>     fclose(filePointer);</pre>
+<pre> }</pre>
+
+<a href="#home">home</a>
+<pre> <a name="19">void load(char* fname)</a></pre>
+<pre> {</pre>
+<pre>     marfa *c, *p;</pre>
+<pre>     int i=0;</pre>
+
+<pre>     FILE *filePointer2 = fopen(fname,"r");</pre>
+<pre>     if(!filePointer2)</pre>
+<pre>         printf("Fisierul nu exista!\n");</pre>
+
+<pre>     while(!feof(filePointer2))</pre>
+<pre>     {</pre>
+<pre>         c = (marfa*) malloc (sizeof(marfa));</pre>
+        
+<pre>         if(c == NULL)</pre>
+<pre>             puts("[-] Memoria nu a fost alocata\n");</pre>
+
+<pre>         if(i == 0)</pre>
+<pre>         {</pre>
+<pre>             head=c;</pre>
+<pre>             p=c;</pre>
+<pre>         }</pre>
+<pre>         else</pre>
+<pre>         {</pre>
+<pre>             p -> next=c;</pre>
+<pre>             p = c;</pre>
+<pre>         }</pre>
+<pre>         fscanf(filePointer2,"%s%s%d%d%f",&c -> name, &c -> distrib, &c -> ID, &c -> termen, &c -> pret);</pre>
+<pre>         i++;</pre>
+<pre>     }</pre>
+<pre>     p -> next = NULL;</pre>
+<pre>     fclose(filePointer2);</pre>
+<pre> }</pre>
+
+
+<pre> ===============================================================</pre>
+<pre> ===============================================================</pre>
+<pre> ===============================================================</pre>
+<pre> ===============================================================</pre>
+
+<pre> <a name="main">  int main()</a></pre>
+<pre> {</pre>
+<pre>     marfa *a = NULL,  *b = NULL,  *head2 = NULL;</pre>
+<pre>     char gxr[40], rc[40], str[40], loadFile[40];</pre>
+<pre>     int n, m, k, mod, zx; </pre>
+<pre>     int before, after, dell;</pre>
+
+<pre>     system("cls");</pre>
+<pre>     start:</pre>
+<pre>     <a href="#01">puts("[1] Introducerea datelor manual");</a></pre>
+<pre>     <a href="#02">puts("[2] Introducerea datelor din fisier ");</a></pre>
+<pre>     printf("[0] Iesire fortata\n>> ");</pre>
+<pre>         scanf("%d", &zx);</pre>
+
+
+<pre>     switch(zx)</pre>
+<pre>     {</pre>
+        
+
+<pre>         <a name="01">case 1:</a></pre>
+<pre>             system("cls");</pre>
+<pre>             printf("Dati numarul de elemente in lista\n>");</pre>
+<pre>                 scanf("%d",&n);</pre>
+<pre>             create (n);</pre>
+<pre>             intro ();</pre>
+                        
+<pre>             if(head)</pre>
+<pre>             {</pre>
+<pre>                 system("cls");</pre>
+<pre>                 printf("Lista a fost creata cu succes!\n");</pre>
+<pre>                 system("pause");</pre>
+<pre>                 m = 1;</pre>
+<pre>                 break;</pre>
+<pre>             }</pre>
+            
+<a href="#main">main</a>
+
+<pre>     
+    
+<a name="02">case 2:</a></pre>
+<pre>             system("cls");</pre>
+                        
+<pre>             if(head)</pre>
+<pre>             {</pre>
+<pre>                 printf("Memoria este deja alocata\n");</pre>
+<pre>                 system("pause");</pre>
+<pre>                 m = 1;</pre>
+<pre>                 break;</pre>
+<pre>             }</pre>
+            
+<pre>             printf("Dati numele fisierului\n>> ");</pre>
+<pre>             fflush(stdin);  gets(loadFile);</pre>
+<pre>             strcat(loadFile,".txt");</pre>
+<pre>             load(loadFile);</pre>
+<pre>             printf("[+] Introducerea a fost efectuata cu succes!\n");</pre>
+<pre>             m = 1;</pre>
+<pre>             system("pause");</pre>
+<pre>             break;</pre>
+
+<a href="#main">main</a>
+
+<pre>         int l;</pre>
+<pre>             case 0:</pre>
+<pre>             freem();</pre>
+<pre>             printf ("Iesim din program?(1/0)\n>> ");</pre>
+<pre>             scanf ("%d", &l);</pre>
+    
+<pre>             if (l==1)   return 0;</pre>
+<pre>             else</pre>
+<pre>             {</pre>
+<pre>             if (l == 0) break;  </pre>
+<pre>             else</pre>
+<pre>             {</pre>
+<pre>                 puts ("Nu ati ales optiunea corecta!\nAlegeti optiunea din nou!\n");</pre>
+<pre>                 system ("pause");</pre>
+<pre>                 break;</pre>
+<pre>             }</pre>
+<pre>         }</pre>
+<pre>         default:</pre>
+<pre>         puts("\n[-] Nu exista asa optiune\n Mai incercati odata\n\n");</pre>
+<pre>         goto start;</pre>
+<pre>     }</pre>
+<pre>     zx = 0;</pre>
+<pre>     system("cls");</pre>
+
+
+<!--
+asd
+asd
+asd
+ads
+-->
+
+<pre>     while(1)</pre>
+<pre>     {</pre>
+<pre>         while(m)</pre>
+<pre>         {   </pre>
+<pre>             m = 0;</pre>
+<pre>             system("cls");</pre>
+
+<pre>             <a href="#1a">puts("[1] Afisarea listei");</a></pre>
+<pre>             <a href="#2a">puts("[2] Sortarea listei dupa pret");</a></pre>
+<pre>             <a href="#3a">puts("[3] Modificarea unui element");</a></pre>
+<pre>             <a href="#4a">puts("[4] Interschimbarea elementelor");</a></pre>
+<pre>             <a href="#5a">puts("[5] Cautarea unui element");</a></pre>
+<pre>             <a href="#6a">puts("[6] Devizarea elementelor in doua liste");</a></pre>
+<pre>             <a href="#7a">puts("[7] Unirea a doua liste cu elemente");</a></pre>
+<pre>             <a href="#8a">puts("[8] Adaugarea elementui inaintea altui element");</a></pre>
+<pre>             <a href="#9a">puts("[9] Adaugarea elementului dupa un element");</a></pre>
+<pre>             <a href="#10a">puts("[10] Adaugarea elementului la sfirsitul listei");</a></pre>
+<pre>             <a href="#11a">puts("[11] Stergea unui element");</a></pre>
+<pre>             <a href="#12a">puts("[12] Salvarea in fisier");</a></pre>
+<pre>             <a href="#13a">puts("[13] Salvare si Iesire");</a></pre>
+
+
+<pre>             puts("----------------------------------------------------");</pre>
+<pre>             printf("\n>> ");</pre>
+<pre>                     scanf("%d",&k);</pre>
+            
+<pre>             switch(k)</pre>
+<pre>             {</pre>
+<pre>                <a name="1a"> case 1:</pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         show(head);</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         break;</pre>
+
+<a href="#main">main</a>
+
+
+<a href="#main">main</a>
+<pre>                 <a name="2a">case 2:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         sort();</pre>
+<pre>                         printf("Lista a fost sortata cu succes!\n");</pre>
+<pre>                         show (head);</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="3a">case 3:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         show(head);</pre>
+<pre>                         printf("\nDati indicile elementului pentru modificare\n>> ");</pre>
+<pre>                             scanf("%d",&mod);</pre>
+<pre>                         system("cls");</pre>
+<pre>                         modify(mod);</pre>
+<pre>                         printf("Modificara a avut loc cu succes!\n");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="4a">case 4:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         show(head);</pre>
+<pre>                         printf("Dati numele primului element pentru interschimbare\n>> ");</pre>
+<pre>                         fflush(stdin);  gets(gxr);</pre>
+<pre>                         a = search(gxr);</pre>
+<pre>                         printf("Dati numele primului element pentru interschimbare\n>> ");</pre>
+<pre>                         fflush(stdin);  gets(rc);</pre>
+<pre>                         b = search(rc);</pre>
+<pre>                         system("cls");</pre>
+<pre>                         swap(a,b);</pre>
+<pre>                         printf("[+] Interschimbarea a avut loc cu succes!\n");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="5a">case 5:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("[-] Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         printf("Dati denumirea produsului sau numele distributorului\n>> ");</pre>
+<pre>                         fflush(stdin);  gets(str);</pre>
+<pre>                         puts(" \n");</pre>
+<pre>                         show_search(str);</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="6a">case 6:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("[-] Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         show(head);</pre>
+<pre>                         printf("\nIntroduceti indicile de unde lista v-a fi despartita\n>> ");</pre>
+<pre>                             scanf("%d",&zx);</pre>
+                        
+<pre>                         if(lenght() > 1 && zx>0 && zx < lenght())</pre>
+<pre>                             split(zx, &head2);</pre>
+
+<pre>                         printf("Devizarea a fost efectuata cu succes!\n");</pre>
+<pre>                         show(head); show(head2);</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="7a">case 7:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("[-] Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+                        
+<pre>                         if(head2)</pre>
+<pre>                         {</pre>
+<pre>                             glue(&head2);</pre>
+<pre>                             printf("[+] Unirea a avut loc cu succes\n");</pre>
+<pre>                         } </pre>
+<pre>                         else    printf("[-] Lista nu este despartita!\n");</pre>
+                        
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="8a">case 8:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+
+<pre>                         show(head);</pre>
+<pre>                         printf("\nIntrodu numarul de ordine in fata caruia introducem noul element\n>> ");</pre>
+<pre>                             scanf("%d",&before);</pre>
+<pre>                         if(before > 0 && before <= lenght() )</pre>
+<pre>                         {</pre>
+<pre>                             system("cls");</pre>
+<pre>                             prepend(before);</pre>
+<pre>                         } </pre>
+<pre>                         else </pre>
+<pre>                           printf("Ati introdus un numar iesit din intervalul existent\n");</pre>
+
+<pre>                         system("cls");</pre>
+<pre>                         printf("[+] Adaugarea s-a efectuat cu succes!\n");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="9a">case 9:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         show(head);</pre>
+<pre>                         printf("\nIntrodu numarul de ordine dupa care introducem noul element\n>> ");</pre>
+<pre>                             scanf("%d",&after);</pre>
+                        
+<pre>                         if(after > 0 && after <= lenght() )</pre>
+<pre>                         {</pre>
+<pre>                             system("cls");</pre>
+<pre>                             append(after);</pre>
+<pre>                         } </pre>
+<pre>                         else printf("[-] Ati introdus un numar iesit din intervalul existent\n");</pre>
+                         
+<pre>                         system("cls");</pre>
+<pre>                         printf("[+] Adaugarea s-a efectuat cu succes!\n");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="10a">case 10:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         addEnd();</pre>
+<pre>                         system("cls");</pre>
+<pre>                         printf("[+] Adaugarea s-a efectuat cu succes!\n");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="11a">case 11:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(!head)</pre>
+<pre>                         {</pre>
+<pre>                             printf("Lista nu exista!\n");</pre>
+<pre>                             m = 1;</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             break;</pre>
+<pre>                         }</pre>
+<pre>                         show(head);</pre>
+<pre>                         printf("Dati indicele elementului pentru stergere\n>> ");</pre>
+<pre>                             scanf("%d",&dell);</pre>
+<pre>                         deleteList(dell);</pre>
+<pre>                         system("cls");</pre>
+<pre>                         printf("[+] Stergerea a fost efectuata cu succes!\n");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="12a">case 12:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         save ();</pre>
+<pre>                         printf("[+] Salvarea a fost efectuata cu succes!\nToata informatia e in savedInfo.txt ");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+                
+
+<a href="#main">main</a>
+<pre>                 <a name="13a">case 13:</a></pre>
+<pre>                         system("cls");</pre>
+<pre>                         if(head)</pre>
+<pre>                         {</pre>
+<pre>                             save ();</pre>
+<pre>                             printf("Salvarea a fost efectuata cu succes!\nToata informatia e in savedInfo.txt.\n ");</pre>
+<pre>                             system("pause");    system("cls");</pre>
+<pre>                             freem();</pre>
+<pre>                             exit(1);</pre>
+<pre>                         }</pre>
+<pre>                         break;</pre>
+
+<pre>         case 0:</pre>
+<pre>             freem();</pre>
+<pre>             int l;</pre>
+<pre>             puts ("Iesim din program?(1/0)\n>> ");</pre>
+<pre>             scanf ("%d", &l);</pre>
+    
+<pre>             if (l == 1)   return 0;</pre>
+<pre>             else</pre>
+<pre>             {</pre>
+<pre>             if (l == 0)  break;  </pre>
+<pre>             else</pre>
+<pre>             {</pre>
+<pre>                 puts ("Nu ati ales optiunea corecta!\nAlegeti optiunea din nou!\n");</pre>
+<pre>                 system ("pause");</pre>
+<pre>                 break;</pre>
+<pre>             }</pre>
+<pre>         }</pre>
+
+
+<pre>                 default:</pre>
+<pre>                         system("cls");</pre>
+<pre>                         printf("Ati introdus o tasta incorecta!\n");</pre>
+<pre>                         m = 1;</pre>
+<pre>                         system("pause");    system("cls");</pre>
+<pre>                         break;</pre>
+<pre>             }</pre>
+<pre>         }</pre>
+<pre>     }</pre>
+<pre>     return 0;</pre>
+<pre> }  </pre>
+
+
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+OfCentral#show ip route
+show running-config
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+R       10.0.0.0/8 [120/1] via 192.168.200.126, 00:00:05, Serial0/0/0
+S       10.18.4.0/23 [1/0] via 93.116.89.5
+     93.0.0.0/30 is subnetted, 1 subnets
+C       93.116.89.4 is directly connected, Serial0/0/1
+     192.168.200.0/25 is subnetted, 2 subnets
+C       192.168.200.0 is directly connected, Serial0/0/0
+C       192.168.200.128 is directly connected, FastEthernet0/0
+OfCentral#show running-config
+Building configuration...
+
+Current configuration : 1125 bytes
+!
+version 12.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname OfCentral
+!
+!
+!
+enable password lab12019
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.200.129 255.255.255.128
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ ip address 192.168.200.1 255.255.255.128
+!
+interface Serial0/0/1
+ ip address 93.116.89.6 255.255.255.252
+ clock rate 64000
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router rip
+ passive-interface FastEthernet0/0
+ network 93.0.0.0
+ network 192.168.200.0
+!
+ip classless
+ip route 10.18.4.0 255.255.254.0 93.116.89.5 
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CSalut  aceasta este re eaua utilizat n cadrul realizrii laboratorului numrul 1 la disciplina  Administrarea i securitatea re elelor^C
+!
+!
+!
+!
+line con 0
+ exec-timeout 15 0
+ password 2019lab
+!
+line aux 0
+!
+line vty 0
+ password 2019lab
+ login
+line vty 1 4
+ login
+!
+!
+!
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

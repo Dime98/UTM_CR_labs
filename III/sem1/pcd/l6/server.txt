@@ -1,0 +1,285 @@
+import java.io.*;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+class FileTransferServer {
+
+    static void verify(Socket socket, String a) throws IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+        oos.flush();
+        oos.writeObject(a);
+    }
+
+
+
+    public static void main(String[] args) throws Exception {
+        long time=0;
+        long time1=0;
+        long rtime=0;
+        File file1 = new File("C:\\Users\\Neonil\\Desktop\\java\\salut1.txt");
+        File file = new File("C:\\Users\\Neonil\\Desktop\\java\\salut.txt");
+        boolean active1=true;
+        boolean active2=true;
+        ClientHandler clientSock=null;
+        ClientHandler1 clientSock1=null;
+
+        //Initialize Sockets
+        ServerSocket ssock=null;
+        try {
+            ssock = new ServerSocket(5000);
+            ssock.setReuseAddress(true);
+
+            while(true)
+            {
+
+                Socket socket = ssock.accept();
+                System.out.println("New client connected " + socket.getInetAddress().getHostAddress());
+
+                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                oos.flush();
+                oos.writeObject("fisierele sunt: salut si salut1");
+
+
+
+
+                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+                ois.skip(Long.MAX_VALUE);
+                String msg = (String) ois.readObject();
+                System.out.println("Client : " + msg);
+                rtime=System.currentTimeMillis();
+                System.out.println(rtime);
+
+
+
+
+                if(msg.equals("salut")&&(time<rtime-20000)) {
+                    verify(socket,"ok");
+                    System.out.println("se transmite fisierul salut");
+                    clientSock = new ClientHandler(socket,file);
+                    new Thread(clientSock).start();
+
+                    time=System.currentTimeMillis();
+                    System.out.println(time);
+
+                }
+                else if(msg.equals("salut"))
+                {
+                    System.out.println("Fisieruul salut nu este disponibil la moment");
+                    verify(socket,"no");
+                }
+
+
+
+                if(msg.equals("salut1")&&(time1<rtime-20000)) {
+                    verify(socket,"ok");
+                    System.out.println("se transmite fisieru salut1");
+                    clientSock1 = new ClientHandler1(socket,file1);
+                    new Thread(clientSock1).start();
+
+                    time1=System.currentTimeMillis();
+                    System.out.println(time1);
+                }
+                else if(msg.equals("salut1"))
+                {
+                    verify(socket,"no");
+                    System.out.println("Fisieruul salut1 nu este disponibil la moment");
+                }
+
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (ssock != null) {
+                try {
+                    ssock.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
+class ClientHandler implements Runnable {
+    File file=null;
+    boolean a=true;
+    private final Socket clientSocket;
+
+    public ClientHandler(Socket socket, File file) {
+        this.clientSocket = socket;
+        this.file=file;
+    }
+
+    @Override
+    public void run() {
+        a=false;
+
+        try {
+            InetAddress IA = InetAddress.getByName("localhost");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+
+        //Specify the file
+
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedInputStream bis = new BufferedInputStream(fis);
+
+        //Get socket's output stream
+        OutputStream os = null;
+        try {
+            os = clientSocket.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Read File Contents into contents array
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;
+            else{
+                size = (int)(fileLength - current);
+                current = fileLength;
+            }
+            contents = new byte[size];
+            try {
+                bis.read(contents, 0, size);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                os.write(contents);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.print("Sending file ... "+(current*100)/fileLength+"% complete!");
+        }
+
+        try {
+            os.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //File transfer done. Close the socket connection!
+        try {
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("File sent succesfully!");
+
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        a=true;
+
+    }
+}
+
+
+
+class ClientHandler1 implements Runnable {
+    File file=null;
+
+    private final Socket clientSocket;
+
+    public ClientHandler1(Socket socket, File file) {
+        this.clientSocket = socket;
+        this.file=file;
+    }
+
+    @Override
+    public void run() {
+
+        try {
+            InetAddress IA = InetAddress.getByName("localhost");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+
+        //Specify the file
+
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedInputStream bis = new BufferedInputStream(fis);
+
+        //Get socket's output stream
+        OutputStream os = null;
+        try {
+            os = clientSocket.getOutputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Read File Contents into contents array
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;
+            else{
+                size = (int)(fileLength - current);
+                current = fileLength;
+            }
+            contents = new byte[size];
+            try {
+                bis.read(contents, 0, size);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                os.write(contents);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.print("Sending file ... "+(current*100)/fileLength+"% complete!");
+        }
+
+        try {
+            os.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //File transfer done. Close the socket connection!
+        try {
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("File sent succesfully!");
+
+
+    }
+}

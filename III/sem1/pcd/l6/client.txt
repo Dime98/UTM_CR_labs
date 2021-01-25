@@ -1,0 +1,71 @@
+import java.io.*;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.Scanner;
+
+
+class FileTransferClient {
+
+    static String verify(Socket socket) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        ois.skip(Long.MAX_VALUE);
+        String confirmation = (String) ois.readObject();
+        System.out.println("Server : " + confirmation);
+        return confirmation;
+    }
+
+
+    public static void main(String[] args) throws Exception{
+        Socket socket = new Socket(InetAddress.getByName("localhost"), 5000);
+
+        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+        ois.skip(Long.MAX_VALUE);
+        String confirmation = (String) ois.readObject();
+        System.out.println("Server : " + confirmation);
+
+
+        Scanner scanner = new Scanner(System.in);
+        String msg = scanner.nextLine();
+        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+        oos.flush();
+        oos.writeObject(msg);
+        String a=verify(socket);
+
+
+     if(a.equals("ok"))
+     {
+
+         //Initialize socket
+
+         byte[] contents = new byte[10000];
+
+         //Initialize the FileOutputStream to the output file's full path.
+         FileOutputStream fos = new FileOutputStream("C:\\Users\\Neonil\\Desktop\\java\\asd.txt");
+         BufferedOutputStream bos = new BufferedOutputStream(fos);
+         InputStream is = socket.getInputStream();
+
+         //No of bytes read in one read() call
+         int bytesRead = 0;
+
+         while((bytesRead=is.read(contents))!=-1)
+             bos.write(contents, 0, bytesRead);
+         bos.flush();
+         System.out.println("File saved successfully!");
+
+         socket.close();
+
+     }
+
+     else
+     {
+         System.out.println("Fisierul la moment nu este disponibil. Reveniti mai tarziu");
+         socket.close();
+
+     }
+
+
+
+
+
+    }
+}

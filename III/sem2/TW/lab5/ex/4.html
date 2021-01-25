@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<a href="../main.html">main page</a>
+<p id="demo">html preview</p>
+	<script type="text/javascript">
+		// define class “Animal” with an argument “name”
+		// set this argument to  property “name”.
+		// define class “Dog” which extend class “Animal”.
+		// “Dog” class will accept an argument name and will set this argument to the parent class “Animal”
+		// on creating “Dog” instance set a property “created” with the current date
+
+		class Animal {
+			constructor(name) {
+				this.name = name;
+			}
+			present() {
+				return 'name: ' + this.name;
+			}
+		}
+
+		class Dog extends Animal {
+			constructor(name, date) {
+				super(name);
+				this.model = date;
+			}
+			show() {
+				return this.present() + ', created on ' + this.model;
+				// return console.log(this.present() + ', created on ' + this.model);
+			}
+		}
+
+		var d = new Date();
+		mycar = new Dog("hachiko", d);
+		document.getElementById("demo").innerHTML = mycar.show();
+
+	</script>
+
+</body>
+</html>

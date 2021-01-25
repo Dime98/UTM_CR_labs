@@ -1,0 +1,32 @@
+-- Num. de biți           8 
+-- CLK                    Front descrescător  
+-- Resetare               asincronă 
+-- Setare                 nu  
+-- Direcție deplasare     stânga  
+-- Încărcare              paralelă  
+-- Iesire                 paralelă
+
+--6.	Registru pe 8 biți cu încărcare paralelă şi resetare asincronă
+library ieee;
+use ieee.std_logic_1164.all;
+entity reg8bit is
+   port ( clk, reset, ld: in std_logic;
+            din: in std_logic_vector(7 downto 0);
+           dout: out std_(7 downto 0));
+end reg8bit;
+architecture behavior of reg8bit is
+  signal n_state: std_logic_vector(7 downto 0);
+  signal p_state : std_logic_vector(7 downto 0);
+    begin
+     process(clk, reset)
+       begin
+         if (reset = ’0’) then p_state <= (others => ’0’); --reset asincron
+          elsif (clk’event and clk = ’0’) then
+            if (ld=’1’) then n_state <= din; --încărcare paralelă
+              else null;
+           end if;
+        p_state <= n_state;
+     end if;
+   end process;
+dout <= p_state;
+end behavior;

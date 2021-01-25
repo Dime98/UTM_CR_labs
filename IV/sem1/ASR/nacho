@@ -1,0 +1,95 @@
+Care dintre tabelele urmatoare sunt utilizate in cadrul protocolului OSPF?
+Topology table
+routing table
+neighbor table
+
+RIP-ul este un protocol de tip
+distance vector
+
+Serviciul DNS folosete urmataorele protocolae de transport si porturi
+UDP/53 
+TCP/53 
+
+Cu ce comanda puteti afla adresa IP a serverului mail.utm.md ?
+nslookup mail.utm.md
+
+Potocolul OSPF ar putea fi folosit in anumite conditii pentru a organiza rutarea globala pe Internet
+Adevărat 
+
+Cum se numește versiunea actuala a softului care implementează un server de nume in GNU/Linux ?
+bind9
+
+Ce metoda de autentificare folosește protocolul SMTP pentru a accepta masajele retransmise ulterior către destinația finala?
+Adresa IP a rețelei de proveniență
+
+In cadrul protocolului  HTTP resursele sunt localizate prin mecanismul care se numește 
+uniform resource locator
+
+Pentru a seta protocolul RIP pe rutere folosim comanda:
+R(config)#router rip
+
+Un răspuns autoritar la o cerere DNS este emis de:
+serverul principal (master server) al domenului la care aparține numele
+serverul secundar (slave server) al domenului la care aparține numele
+
+
+Scrieți comanda completă cu argumentele necesare care va permite sa începeți dialogul pentru a trimite un e-mail  în linie de comanda pe serverul mail.utm.md
+telnet mail.utm.md 25
+
+Protocolul OSPF prevede calcularea rutelor  cu cost minim de către un ruter dedicat  în baza informațiilor colectate si distribuirea acestor rute tuturor ruterelor din rețea prin intermediu unei adrese multicast.
+Fals 
+
+Scrieți abrevierile denumirilor  protocoalelor separate prin spatii   prin care avem acces la cutia postala într-un serviciu de posta electronica cu excepția accesului prin web
+pop3 smtp imap
+
+Protocolul RIP folosește în calitate de metrică de rutare
+numărul de hop-uri 
+
+OSPF este un protocol de tip:
+link state
+
+Mesajul de cerere a resursei in cadrul protocolului HTTP este trimis împreună cu care faza a procedurii "three-way handshake" utilizata de TCP pentru a stabili conexiunea?
+treia 
+
+Protocolul RIP folosește algoritmul Dijkstra pentru a calcula parcusurile de cost minim
+Fals 
+
+Ce tip de înregistrare va fi utilizata in fișierele de configurare de zona DNS pentru a stabili legătura dintre o adresa IP si un nume de domen?
+tip PTR
+
+In cadrul protocolului BGP pe ruterele Cisco un vecin se defineste prin comanda:
+Neighbor <IP> remote AS <AS-number>
+
+Care dintre afirmațiile de mai jos privind serviciul DNS nu sunt corecte?
+Adrese IP multiple pot corespunde unui singur nume 
+Un singur nume poate corespunde unei adrese IP 
+
+In cadrul protocolului SMTP comanda care definește adresa destinatarului mesajului se numește:
+RCPT TO
+
+Mecanismul GET conditional din cadrul protcolului HTTP:
+permite ca informația păstrată in memoria cache a navigatorului sa fie actualizată 
+
+Protocolul HTTP utilizează un canal separat pentru a organiza si controla schimbul de date dintre client si server
+Fals 
+
+Protocolul POP3 permite pastrarea mesajelor pe server de posta:
+sub forma de un fisier 
+
+Scrieti abrevierea tipului de inregstrare intr-o zona DNS care defineste serverul pe posta al domenului
+mx
+
+Ce valoare este echivalenta cu noţiunea  "infinit" în protocolul RIP
+16
+
+Protocolul BGP este un protocol de tipul:
+path vector protocol
+
+Daca descarcam prin intermediul protocolului FTP 5 fișiere de pe server cate conexiuni TCP vor fi deschise intre client și server?
+6
+
+Fiind setata opțiunea   "Active mode" in cadrul protocolului FTP, clientul  inițiază 2 conexiuni TCP: cea de control si cea de date
+Fals 
+
+Un server DNS poate servi simultan mai multe zone
+Adevărat 

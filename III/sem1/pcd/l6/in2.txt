@@ -1,0 +1,4 @@
+Designed by: Dennis Ritchie
+Latest release: C18 is the informal name for ISO/IEC 9899:2018
+C is a general-purpose, procedural computer programming language supporting structured programming, lexical variable scope, and recursion, while a static type system prevents unintended operations. 
+Dennis MacAlistair Ritchie was an American computer scientist. He created the C programming language and, with long-time colleague Ken Thompson, the Unix operating system and B programming language. 

@@ -1,0 +1,30 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+entity ALU is 
+
+    generic
+    (
+        DATA_WIDTH : natural := 8
+    );
+
+port ( D1, D2, IC, FI :in std_logic_vector((DATA_WIDTH-1) downto 0);
+        Do, Fo:out std_logic_vector((DATA_WIDTH-1) downto 0));
+end entity;
+
+
+architecture ALU_arch of ALU is 
+begin
+func: process(IC)is
+begin
+
+if (IC = 1) then
+--Do<= D1+D2;
+--Fo<=Fi;
+end if;
+
+
+end process func;
+
+
+end architecture ALU_arch;

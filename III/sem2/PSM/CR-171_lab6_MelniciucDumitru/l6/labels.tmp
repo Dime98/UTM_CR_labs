@@ -1,0 +1,44 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.30</VERSION>
+ <DEVICE>ATmega32</DEVICE>
+ <WORKING_DIR>C:\Users\Dime\Desktop\univeristate\III\psm\l6</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes\m32def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <VideoBuff><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>21</LINE></VideoBuff>
+  <ADCResults><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>22</LINE></ADCResults>
+  <RESET><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>126</LINE></RESET>
+  <RECIVE><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>89</LINE></RECIVE>
+  <Send><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>110</LINE></Send>
+  <End_Conversion><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>77</LINE></End_Conversion>
+  <END_RECIVE><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>103</LINE></END_RECIVE>
+  <END_Send><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>119</LINE></END_Send>
+  <MAIN><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>160</LINE></MAIN>
+  <BinToDec><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>175</LINE></BinToDec>
+  <positiv><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>182</LINE></positiv>
+  <tenthousands><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>188</LINE></tenthousands>
+  <endtenthousands><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>196</LINE></endtenthousands>
+  <getcode><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>255</LINE></getcode>
+  <thousands><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>204</LINE></thousands>
+  <endthousands><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>212</LINE></endthousands>
+  <hundreds><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>220</LINE></hundreds>
+  <endhundreds><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>228</LINE></endhundreds>
+  <tenths><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>237</LINE></tenths>
+  <endtenths><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>245</LINE></endtenths>
+  <CodeTable><FILE>C:\Users\Dime\Desktop\univeristate\III\psm\l6\l6.asm</FILE><LINE>265</LINE></CodeTable>
+ </LABELS>
+</ASSEMBLER_INFO>

@@ -1,0 +1,184 @@
+$comment
+	File created using the following command:
+		vcd file l1.msim.vcd -direction
+$end
+$date
+	Wed Apr 15 19:24:09 2020
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module l1_vhd_vec_tst $end
+$var wire 1 ! pin_name1 $end
+$var wire 1 " pin_name2 $end
+$var wire 1 # pin_name3 $end
+$var wire 1 $ pin_name4 $end
+$var wire 1 % pin_name5 $end
+
+$scope module i1 $end
+$var wire 1 & gnd $end
+$var wire 1 ' vcc $end
+$var wire 1 ( unknown $end
+$var wire 1 ) devoe $end
+$var wire 1 * devclrn $end
+$var wire 1 + devpor $end
+$var wire 1 , ww_devoe $end
+$var wire 1 - ww_devclrn $end
+$var wire 1 . ww_devpor $end
+$var wire 1 / ww_pin_name5 $end
+$var wire 1 0 ww_pin_name1 $end
+$var wire 1 1 ww_pin_name2 $end
+$var wire 1 2 ww_pin_name4 $end
+$var wire 1 3 ww_pin_name3 $end
+$var wire 1 4 pin_name5_aoutput_o $end
+$var wire 1 5 pin_name1_ainput_o $end
+$var wire 1 6 pin_name3_ainput_o $end
+$var wire 1 7 pin_name2_ainput_o $end
+$var wire 1 8 pin_name4_ainput_o $end
+$var wire 1 9 inst3_a0_combout $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+0#
+0$
+0%
+0&
+1'
+x(
+1)
+1*
+1+
+1,
+1-
+1.
+0/
+00
+01
+02
+03
+04
+05
+06
+07
+08
+09
+$end
+#30000
+1!
+10
+15
+#60000
+0!
+1"
+00
+11
+17
+05
+19
+14
+1/
+1%
+#90000
+1!
+10
+15
+#120000
+0!
+0"
+1#
+00
+01
+13
+16
+07
+05
+09
+04
+0/
+0%
+#150000
+1!
+10
+15
+#180000
+0!
+1"
+00
+11
+17
+05
+19
+14
+1/
+1%
+#210000
+1!
+10
+15
+#240000
+0!
+0"
+0#
+1$
+00
+01
+03
+12
+18
+06
+07
+05
+09
+04
+0/
+0%
+#270000
+1!
+10
+15
+19
+14
+1/
+1%
+#300000
+0!
+1"
+00
+11
+17
+05
+#330000
+1!
+10
+15
+09
+04
+0/
+0%
+#360000
+0!
+0"
+1#
+00
+01
+13
+16
+07
+05
+#390000
+1!
+10
+15
+19
+14
+1/
+1%
+#400000

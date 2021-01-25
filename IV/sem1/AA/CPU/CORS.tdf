@@ -1,0 +1,37 @@
+INCLUDE "UAL.inc";
+
+PARAMETERS
+(
+	NrProc = 4,
+	ProcWidth = 16
+);
+SUBDESIGN CORS
+(
+	CO[1..NrProc][ProcWidth-1..0]		: INPUT;
+	
+	S1[1..NrProc][ProcWidth-1..0]		: INPUT;
+	S2[1..NrProc][ProcWidth-1..0]		: INPUT;
+	FI[1..NrProc][ProcWidth-1..0]		: INPUT;
+	
+	DO[1..NrProc][ProcWidth-1..0]		: OUTPUT;
+	FO[1..NrProc][ProcWidth-1..0]		: OUTPUT;
+
+)
+
+VARIABLE CORS[1..NrProc]: UAL WITH(Width = ProcWidth);
+
+BEGIN
+	
+	FOR i IN 1  TO NrProc GENERATE
+	
+		CORS[i].CO[]=CO[i][];
+		CORS[i].S1[]=S1[i][];
+		CORS[i].S2[]=S2[i][];
+		CORS[i].FI[]=FI[i][];
+		
+		DO[i][]=CORS[i].DO[];
+		FO[i][]=CORS[i].FO[];
+		
+	END GENERATE;
+
+END;

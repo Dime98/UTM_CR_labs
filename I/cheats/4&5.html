@@ -1,0 +1,1049 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+	<a name="home"></a>
+<a href="#main">main</a><br>
+<a href="#proto">protoFunct</a><br>
+<a href="#funct">funct</a><br>
+
+<pre> typedef struct nod</pre>
+<pre> {</pre>
+<pre>     char name[40];</pre>
+<pre>     char distrib[40];</pre>
+<pre>     int ID;</pre>
+<pre>     int termen;</pre>
+<pre>     float pret;</pre>
+<pre>     struct nod *left,*right;</pre>
+<pre> }nod;</pre>
+
+<pre> nod *root=NULL;</pre>
+
+
+<pre>//coada</pre>
+<pre> typedef struct elq{</pre>
+<pre>     nod *adrnod;</pre>
+<pre>     struct elq *next;</pre>
+<pre> }elq;</pre>
+<pre> elq *first=NULL;</pre>
+<pre> elq *last=NULL;</pre>
+
+
+<pre>//stiva</pre>
+<pre> typedef struct els{</pre>
+<pre>     nod *adrnod;</pre>
+<pre>     struct els* prev;</pre>
+<pre> }els;</pre>
+<pre> els *top=NULL;</pre>
+ 
+
+ <br>
+<a name="proto"></a>
+
+
+<pre> <a href="#1">int inq(nod *x)</a><pre/>
+<pre> <a href="#2">nod* delq()</a><pre/>
+<pre> <a href="#3">int push(nod *x)</a><pre/>
+<pre> <a href="#4">nod* pop()</a><pre/>
+<pre> <a href="#5">int create_q()</a><pre/>
+<pre> <a href="#6">int show_q()</a><pre/>
+<pre> <a href="#7">nod* search_q(char *fname)</a><pre/>
+<pre> <a href="#8">int size_q()</a><pre/>
+<pre> <a href="#9">int freemem_q()</a><pre/>
+<pre> <a href="#10">int height_q(nod *c)</a><pre/>
+    <br>
+<pre> <a href="#11">int creat_s()</a><pre/>
+<pre> <a href="#12">int show_s()</a><pre/>
+<pre> <a href="#13">int size_s()</a><pre/>
+<pre> <a href="#14">nod* search_s(char *fname)</a><pre/>
+<pre> <a href="#15">int freemem_s()</a><pre/>
+<pre> <a href="#16">int height_s(nod *c)</a><pre/>
+<br>
+<pre> <a href="#17"> nod* creat_rsd(nod* parent)</a><pre/>
+<pre> <a href="#18">void show_rsd(nod *c)</a><pre/>
+<pre> <a href="#19">void show_rds(nod *c)</a><pre/>
+<pre> <a href="#20">void show_srd(nod *c)</a><pre/>
+<pre> <a href="#21">void show_sdr(nod *c)</a><pre/>
+<pre> <a href="#22">void show_dsr(nod *c)</a><pre/>
+<pre> <a href="#23">void freemem_rsd(nod *c)</a><pre/>
+<pre> <a href="#24">nod* search_rsd(nod* c, char *fname)</a><pre/>
+<pre> <a href="#25">int size_rsd(nod *c)</a><pre/>
+<pre> <a href="#26">int height_rsd(nod *c)</a><pre/>
+
+
+<a name="funct"></a>
+<pre> <a name="1">int inq(nod *x)</a><pre/>
+<pre> {<pre/>
+<pre>     elq *c;<pre/>
+<pre>     c=(elq*)malloc(sizeof(elq));<pre/>
+<pre>     if(!c) return 0;<pre/>
+<pre>     if(!first){<pre/>
+<pre>     first = c;<pre/>
+<pre>     } <pre/>
+<pre>     else    last->next=c;<pre/>
+    
+<pre>      last=c;<pre/>
+<pre>     c->next=NULL;<pre/>
+<pre>     c->adrnod=x;<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+
+<a href="#home">home</a>
+<a href="#proto">proto</a>
+<pre> <a name="2">nod* delq()</a><pre/>
+<pre> {<pre/>
+<pre> elq *c=first;<pre/>
+<pre> nod *x;<pre/>
+<pre>   if(c == last){<pre/>
+<pre>   first=last=NULL;<pre/>
+<pre>   } else    first=c->next;<pre/>
+  
+<pre>   x=c->adrnod;<pre/>
+<pre> free(c);<pre/>
+<pre> return x;<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="3">int push(nod *x)</a><pre/>
+<pre> {<pre/>
+<pre> els *c;<pre/>
+<pre>  c=(els*)malloc(sizeof(els));<pre/>
+<pre>  if(!c) return 0;<pre/>
+<pre>   c->prev=top;<pre/>
+<pre>   c->adrnod=x;<pre/>
+<pre>   top=c;<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="4">nod* pop()</a><pre/>
+<pre> {<pre/>
+<pre> els *c=top;<pre/>
+<pre> nod *x;<pre/>
+<pre>  top=c->prev;<pre/>
+<pre>  x=c->adrnod;<pre/>
+<pre>  free(c);<pre/>
+<pre> return x;<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="5">int create_q()</a><pre/>
+<pre> {<pre/>
+<pre>     int f;<pre/>
+<pre>     nod *c,*p;<pre/>
+<pre>     first=last=NULL;<pre/>
+
+<pre>     printf("\nDoriti sa creati radacina arborelui (1/0)?: ");<pre/>
+<pre>     scanf("%d",&f);<pre/>
+<pre>     if(f)<pre/>
+<pre>     {<pre/>
+<pre>         c=(nod*)malloc(sizeof(nod));<pre/>
+<pre>         if(!c) return -1;<pre/>
+<pre>         printf("\nIntroduceti datele radacinei:\n");<pre/>
+<pre>              printf("Denumire: ");<pre/>
+<pre>                 scanf("%s", &c->name);<pre/>
+<pre>             printf("Importator: ");<pre/>
+<pre>                 scanf("%s", &c->distrib);<pre/>
+<pre>             printf("ID: ");<pre/>
+<pre>                 scanf("%d", &c->ID);<pre/>
+<pre>             printf("Livrare(zile): ");<pre/>
+<pre>                 scanf("%d", &c->termen);<pre/>
+<pre>             printf("pret: ");<pre/>
+<pre>                 scanf("%f", &c->pret);<pre/>
+<pre>   if(!inq(c)) return -2;<pre/>
+<pre>   root = c;<pre/>
+<pre> }<pre/>
+<pre> else   root = NULL;<pre/>
+
+<pre>   while(first)<pre/>
+<pre>   {<pre/>
+<pre>   p = delq();<pre/>
+<pre>   printf("\nDoriti sa creati copilul sting al nodului %s (1/0)?: ",p->name);<pre/>
+<pre>   scanf("%d",&f);<pre/>
+  
+<pre>   if(f)<pre/>
+<pre>   {<pre/>
+<pre>     c=(nod*)malloc(sizeof(nod));<pre/>
+<pre>     if(!c) return -3;<pre/>
+<pre>     printf("\nIntroduceti datele copilului sting\n");<pre/>
+<pre>              printf("Denumire: ");<pre/>
+<pre>                 scanf("%s", &c->name);<pre/>
+<pre>             printf("Importator: ");<pre/>
+<pre>                 scanf("%s", &c->distrib);<pre/>
+<pre>             printf("ID: ");<pre/>
+<pre>                 scanf("%d", &c->ID);<pre/>
+<pre>             printf("Livrare(zile): ");<pre/>
+<pre>                 scanf("%d", &c->termen);<pre/>
+<pre>             printf("pret: ");<pre/>
+<pre>                 scanf("%f", &c->pret);<pre/>
+<pre>     p->left=c;<pre/>
+<pre>     if(!inq(c)) return -2;<pre/>
+<pre>   } else p->left=NULL;<pre/>
+  
+<pre>     printf("\nDoriti sa creati copilul drept al nodului %s (1/0)?: ",p->name);<pre/>
+<pre>          scanf("%d",&f);<pre/>
+  
+<pre>   if(f)<pre/>
+<pre>   {<pre/>
+<pre>     c=(nod*)malloc(sizeof(nod));<pre/>
+<pre>     if(!c) return -3;<pre/>
+<pre>   printf("\nIntroduceti datele copilului drept\n");<pre/>
+<pre>              printf("Denumire: ");<pre/>
+<pre>                 scanf("%s", &c->name);<pre/>
+<pre>             printf("Importator: ");<pre/>
+<pre>                 scanf("%s", &c->distrib);<pre/>
+<pre>             printf("ID: ");<pre/>
+<pre>                 scanf("%d", &c->ID);<pre/>
+<pre>             printf("Livrare(zile): ");<pre/>
+<pre>                 scanf("%d", &c->termen);<pre/>
+<pre>             printf("pret: ");<pre/>
+<pre>                 scanf("%f", &c->pret);<pre/>
+<pre>     p->right = c;<pre/>
+<pre>     if(!inq(c)) return -2;<pre/>
+<pre>   } <pre/>
+<pre>   else  p->right = NULL;<pre/>
+  
+<pre>   }<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="6">int show_q()</a><pre/>
+<pre> {<pre/>
+<pre> nod *p,*c;<pre/>
+<pre> first=last=NULL;<pre/>
+<pre>   if(!root) return 0;<pre/>
+<pre>     p=root;<pre/>
+<pre>     if(!inq(p)) return -2;<pre/>
+<pre>     while(first){<pre/>
+<pre>         p=delq();<pre/>
+<pre>              printf("\nNodul (%s)\n",p->name);<pre/>
+<pre>               printf("Denumire: %s\n", p->name);<pre/>
+<pre>               printf("Importator: %s\n", p->distrib);<pre/>
+<pre>               printf("ID: %d\n", p->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", p->termen);<pre/>
+<pre>               printf("Pret: %f\n", p->pret);<pre/>
+<pre> c=p->left;<pre/>
+<pre>   if(c)<pre/>
+<pre>     if(!inq(c)) return -2;<pre/>
+    
+<pre>     c=p->right;<pre/>
+  
+<pre>    if(c)<pre/>
+<pre>    {<pre/>
+<pre>     if(!inq(c)) return -2;<pre/>
+<pre>     }<pre/>
+<pre>     }<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+
+
+<pre> <a name="7">nod* search_q(char *fname)</a><pre/>
+<pre> <pre/>
+<pre> {<pre/>
+<pre> nod *p,*c;<pre/>
+<pre> first=last=NULL;<pre/>
+<pre>   if(!root) return NULL;<pre/>
+<pre>     p=root;<pre/>
+<pre>     if(!inq(p)) return NULL;<pre/>
+<pre>     while(first){<pre/>
+<pre>         p=delq();<pre/>
+<pre>           if(!strcmp(p->name,fname)) return p;<pre/>
+<pre> c=p->left;<pre/>
+<pre>   if(c){<pre/>
+<pre>     if(!inq(c)) return NULL;<pre/>
+<pre>   }<pre/>
+<pre> c=p->right;<pre/>
+<pre>    if(c){<pre/>
+<pre>     if(!inq(c)) return NULL;<pre/>
+<pre>     }<pre/>
+<pre>     }<pre/>
+<pre> return NULL;<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="8">int size_q()</a><pre/>
+<pre> {<pre/>
+<pre> int s=0;<pre/>
+<pre> nod *p,*c;<pre/>
+<pre> first=last=NULL;<pre/>
+<pre>   if(!root) return 0;<pre/>
+<pre>     p=root;<pre/>
+<pre>     if(!inq(p)) return -2;<pre/>
+<pre>     while(first){<pre/>
+<pre>         p=delq();<pre/>
+<pre>           s++;<pre/>
+<pre> c=p->left;<pre/>
+<pre>   if(c)<pre/>
+<pre>     if(!inq(c)) return -2;<pre/>
+
+<pre> c=p->right;<pre/>
+<pre>    if(c)<pre/>
+<pre>    {<pre/>
+<pre>     if(!inq(c)) return -2;<pre/>
+<pre>     }<pre/>
+<pre>     }<pre/>
+<pre> return s;<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="9">int freemem_q()</a><pre/>
+<pre> {<pre/>
+<pre>     nod *p,*c;<pre/>
+<pre>     first=last=NULL;<pre/>
+    
+<pre>     if(!root) return 0;<pre/>
+<pre>         p=root;<pre/>
+<pre>     if(!inq(p)) return -2;<pre/>
+
+<pre>     while(first)<pre/>
+<pre>     {<pre/>
+<pre>         p=delq();<pre/>
+<pre>         c=p->left;<pre/>
+        
+<pre>         if(c)<pre/>
+<pre>             if(!inq(c)) return -2;<pre/>
+        
+    
+<pre>     c=p->right;<pre/>
+    
+<pre>         if(c)<pre/>
+<pre>             if(!inq(c)) return -2;<pre/>
+        
+<pre>         free(p);<pre/>
+<pre>         }<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="10">int height_q(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>     int l=0,r=0;<pre/>
+
+<pre>     if(!c) return -1;<pre/>
+
+<pre>     l=1+height_q(c->left);<pre/>
+<pre>     r=1+height_q(c->right);<pre/>
+<pre>     if(l>r) return l;<pre/>
+<pre>     else return r;<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="11">int creat_s()</a><pre/>
+<pre> {<pre/>
+<pre>     nod *p, *c;<pre/>
+<pre>     int f;<pre/>
+<pre>     root=NULL;<pre/>
+<pre>     top=NULL;<pre/>
+<pre>     printf("\nDoriti sa creati radacina arborelui (1/0)? : ");<pre/>
+<pre>         fflush(stdin);  scanf("%d",&f);<pre/>
+    
+<pre>     if(f)<pre/>
+<pre>     {<pre/>
+<pre>         c=(nod*)malloc(sizeof(nod));<pre/>
+<pre>         if(!c) return -1;<pre/>
+<pre>         printf("\nIntroduceti datele \n");<pre/>
+<pre>             printf("Denumire: ");<pre/>
+<pre>                 scanf("%s", &c->name);<pre/>
+<pre>             printf("Importator: ");<pre/>
+<pre>                 scanf("%s", &c->distrib);<pre/>
+<pre>             printf("ID: ");<pre/>
+<pre>                 scanf("%d", &c->ID);<pre/>
+<pre>             printf("Livrare(zile): ");<pre/>
+<pre>                 scanf("%d", &c->termen);<pre/>
+<pre>             printf("pret: ");<pre/>
+<pre>                 scanf("%f", &c->pret);<pre/>
+<pre>         if(!push(c)) return -5;<pre/>
+<pre>     root=c;<pre/>
+   
+<pre>    while(top)<pre/>
+<pre>    {<pre/>
+<pre>     p=pop();<pre/>
+<pre>     printf("\nDoriti sa creati copilul drept al nodului %s (1/0)?: ",p->name);<pre/>
+<pre>     fflush(stdin);<pre/>
+<pre>     scanf("%d",&f);<pre/>
+    
+<pre>     if(f)<pre/>
+<pre>     {<pre/>
+<pre>         c=(nod*)malloc(sizeof(nod));<pre/>
+<pre>         if(!c) return -3;<pre/>
+<pre>             printf("\nIntroduceti datele\n");<pre/>
+<pre>             printf("Denumire: ");<pre/>
+<pre>                 scanf("%s", &c->name);<pre/>
+<pre>             printf("Importator: ");<pre/>
+<pre>                 scanf("%s", &c->distrib);<pre/>
+<pre>             printf("ID: ");<pre/>
+<pre>                 scanf("%d", &c->ID);<pre/>
+<pre>             printf("Livrare(zile): ");<pre/>
+<pre>                 scanf("%d", &c->termen);<pre/>
+<pre>             printf("pret: ");<pre/>
+<pre>                 scanf("%f", &c->pret);<pre/>
+<pre>     p->right = c;<pre/>
+<pre>     if(!push(c)) return -5;<pre/>
+<pre>   } else    p->right = NULL;<pre/>
+
+<pre>   printf("\nDoriti sa creati copilul sting al nodului %s (1/0)?: ",p->name);<pre/>
+<pre>   fflush(stdin);<pre/>
+<pre>   scanf("%d",&f);<pre/>
+<pre>   if(f)<pre/>
+<pre>   {<pre/>
+<pre>     c=(nod*)malloc(sizeof(nod));<pre/>
+<pre>     if(!c) return -3;<pre/>
+<pre>     printf("\nIntroduceti datele\n");<pre/>
+<pre>             printf("Denumire: ");<pre/>
+<pre>                 scanf("%s", &c->name);<pre/>
+<pre>             printf("Importator: ");<pre/>
+<pre>                 scanf("%s", &c->distrib);<pre/>
+<pre>             printf("ID: ");<pre/>
+<pre>                 scanf("%d", &c->ID);<pre/>
+<pre>             printf("Livrare(zile): ");<pre/>
+<pre>                 scanf("%d", &c->termen);<pre/>
+<pre>             printf("pret: ");<pre/>
+<pre>                 scanf("%f", &c->pret);<pre/>
+<pre>     p->left=c;<pre/>
+<pre>     if(!push(c)) return -5;<pre/>
+<pre>   }else    p->left=NULL;<pre/>
+  
+<pre>   }<pre/>
+<pre> }<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="12">int show_s()</a><pre/>
+<pre> {<pre/>
+<pre> nod *p,*c;<pre/>
+<pre> top=NULL;<pre/>
+<pre>   if(!root) return 0;<pre/>
+<pre>     p=root;<pre/>
+<pre>     if(!push(p)) return -5;<pre/>
+<pre>     while(top){<pre/>
+<pre>         p=pop();<pre/>
+<pre>               printf("Nodul (%s)\n",p->name);<pre/>
+<pre>               printf("Denumire: %s\n", p->name);<pre/>
+<pre>               printf("Importator: %s\n", p->distrib);<pre/>
+<pre>               printf("ID: %d\n", p->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", p->termen);<pre/>
+<pre>               printf("Pret: %f\n\n", p->pret);<pre/>
+<pre> c=p->right;<pre/>
+<pre>    if(c!=NULL){<pre/>
+<pre>     if(!push(c)) return -5;<pre/>
+<pre>     }<pre/>
+<pre> c=p->left;<pre/>
+<pre>   if(c!=NULL){<pre/>
+<pre>     if(!push(c)) return -5;<pre/>
+<pre>   }<pre/>
+<pre>     }<pre/>
+<pre> printf("\n");<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="13">int size_s()</a><pre/>
+<pre> {<pre/>
+<pre>     nod *p,*c;  <pre/>
+<pre>     int s=0;<pre/>
+<pre>     top=NULL;<pre/>
+
+<pre>     if(!root) return 0;<pre/>
+<pre>         p=root;<pre/>
+
+<pre>     if(!push(p)) return -5;<pre/>
+
+<pre>     while(top)<pre/>
+<pre>     {<pre/>
+<pre>         p=pop();<pre/>
+<pre>         s++;<pre/>
+<pre>         c=p->right;<pre/>
+    
+<pre>     if(c!=NULL)<pre/>
+<pre>         if(!push(c)) return -5;<pre/>
+
+<pre>     c=p->left;<pre/>
+
+<pre>     if(c!=NULL)<pre/>
+<pre>         if(!push(c)) return -5;<pre/>
+    
+<pre>     }<pre/>
+<pre> return s;<pre/>
+<pre> }<pre/>
+
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="14">nod* search_s(char *fname)</a><pre/>
+<pre> {<pre/>
+<pre>     nod *p,*c;<pre/>
+<pre>     top=NULL;<pre/>
+    
+<pre>     if(!root) return NULL;<pre/>
+<pre>         p=root;<pre/>
+    
+<pre>     if(!push(p)) return NULL;<pre/>
+    
+<pre>     while(top)<pre/>
+<pre>     {<pre/>
+<pre>         p=pop();<pre/>
+<pre>         if(!strcmp(fname,p->name)) return p;<pre/>
+        
+<pre>         c=p->right;<pre/>
+<pre>         if(c!=NULL)<pre/>
+<pre>         if(!push(c)) return NULL;<pre/>
+
+<pre>         c=p->left;<pre/>
+        
+<pre>         if(c!=NULL)<pre/>
+<pre>             if(!push(c)) return NULL;<pre/>
+  
+<pre>     }<pre/>
+<pre> return NULL;<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="15">int freemem_s()</a><pre/>
+<pre> {<pre/>
+<pre> nod *p,*c;<pre/>
+<pre> top=NULL;<pre/>
+<pre>   if(!root) return 0;<pre/>
+<pre>     p=root;<pre/>
+<pre>     if(!push(p)) return -5;<pre/>
+    
+<pre>     while(top)<pre/>
+<pre>     {<pre/>
+<pre>         p=pop();<pre/>
+<pre>         c=p->right;<pre/>
+    
+<pre>         if(c!=NULL)<pre/>
+<pre>             if(!push(c)) return -5;<pre/>
+        
+<pre>         c=p->left;<pre/>
+  
+<pre>     if(c!=NULL)<pre/>
+<pre>         if(!push(c)) return -5;<pre/>
+  
+<pre>   free(p);<pre/>
+<pre>     }<pre/>
+<pre> return 1;<pre/>
+<pre> }<pre/>
+
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="16">int height_s(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>     int l=0,r=0;<pre/>
+<pre>     if(!c) return -1;<pre/>
+<pre>     l=1+height_s(c->left);<pre/>
+<pre>     r=1+height_s(c->right);<pre/>
+<pre>     if(l>r) return l;<pre/>
+<pre>     else return r;<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre><a name="17"> nod* creat_rsd(nod* parent)</a><pre/>
+<pre> {<pre/>
+<pre>     nod *c;<pre/>
+<pre>     int f;<pre/>
+<pre>     c=(nod*)malloc( sizeof(*c) );<pre/>
+<pre>     if(!c) return NULL;<pre/>
+
+<pre>   printf("\nIntroduceti datele\n");<pre/>
+<pre>             printf("Denumire: ");<pre/>
+<pre>                 fflush(stdin);  scanf("%s", &c->name);<pre/>
+<pre>             printf("Importator: ");<pre/>
+<pre>                 scanf("%s", &c->distrib);<pre/>
+<pre>             printf("ID: ");<pre/>
+<pre>                 scanf("%d", &c->ID);<pre/>
+<pre>             printf("Livrare(zile): ");<pre/>
+<pre>                 scanf("%d", &c->termen);<pre/>
+<pre>             printf("pret: ");<pre/>
+<pre>                 scanf("%f", &c->pret);<pre/>
+  
+<pre>   printf("\nDoriti sa creati copilul sting al nodului %s (1/0)?: ",c->name);<pre/>
+<pre>     fflush(stdin);  scanf("%d",&f);<pre/>
+    
+<pre>     if(f)   c->left=creat_rsd(c);<pre/>
+<pre>     else c->left=NULL;<pre/>
+  
+<pre>   printf("\nDoriti sa creati copilul drept al nodului %s (1/0)?: ",c->name);<pre/>
+<pre>     fflush(stdin);  scanf("%d",&f);<pre/>
+  
+<pre>     if(f) c->right=creat_rsd(c);<pre/>
+<pre>     else c->right=NULL;<pre/>
+  
+<pre>   return c;<pre/>
+<pre> }<pre/>
+
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="18">void show_rsd(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>  if(!c)  return;<pre/>
+    
+<pre>     printf("Nodul (%s)\n",c->name);<pre/>
+<pre>     printf("Denumire: %s\n", c->name);<pre/>
+<pre>     printf("Importator: %s\n", c->distrib);<pre/>
+<pre>     printf("ID: %d\n", c->ID);<pre/>
+<pre>     printf("Livrare(zile): %d\n", c->termen);<pre/>
+<pre>     printf("Pret: %f\n\n", c->pret);<pre/>
+<pre>  show_rsd(c->left);<pre/>
+<pre>  show_rsd(c->right);<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="19">void show_rds(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>     if(!c)<pre/>
+<pre>         return;<pre/>
+ 
+<pre>              printf("Nodul (%s)\n",c->name);<pre/>
+<pre>               printf("Denumire: %s\n", c->name);<pre/>
+<pre>               printf("Importator: %s\n", c->distrib);<pre/>
+<pre>               printf("ID: %d\n", c->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", c->termen);<pre/>
+<pre>               printf("Pret: %f\n\n", c->pret);<pre/>
+<pre>   show_rds(c->right);<pre/>
+<pre>   show_rds(c->left);<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="20">void show_srd(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>  if(!c) return;<pre/>
+
+<pre>   show_srd(c->left);<pre/>
+<pre>             printf("Nodul (%s)\n",c->name);<pre/>
+<pre>               printf("Denumire: %s\n", c->name);<pre/>
+<pre>               printf("Importator: %s\n", c->distrib);<pre/>
+<pre>               printf("ID: %d\n", c->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", c->termen);<pre/>
+<pre>               printf("Pret: %f\n\n", c->pret);<pre/>
+<pre>   show_srd(c->right);<pre/>
+<pre> }<pre/>
+<pre> void show_drs(nod *c){<pre/>
+<pre>  if(!c){<pre/>
+<pre>   return;<pre/>
+<pre>  }<pre/>
+<pre>   show_drs(c->right);<pre/>
+<pre>              printf("Nodul (%s)\n",c->name);<pre/>
+<pre>               printf("Denumire: %s\n", c->name);<pre/>
+<pre>               printf("Importator: %s\n", c->distrib);<pre/>
+<pre>               printf("ID: %d\n", c->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", c->termen);<pre/>
+<pre>               printf("Pret: %f\n\n", c->pret);<pre/>
+<pre>   show_drs(c->left);<pre/>
+<pre> }<pre/>
+
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="21">void show_sdr(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>     if(!c)<pre/>
+<pre>         return;<pre/>
+ 
+<pre>   show_sdr(c->left);<pre/>
+<pre>   show_sdr(c->right);<pre/>
+<pre>              printf("Nodul (%s)\n",c->name);<pre/>
+<pre>               printf("Denumire: %s\n", c->name);<pre/>
+<pre>               printf("Importator: %s\n", c->distrib);<pre/>
+<pre>               printf("ID: %d\n", c->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", c->termen);<pre/>
+<pre>               printf("Pret: %f\n\n", c->pret);<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="22">void show_dsr(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>     if(!c)<pre/>
+<pre>       return;<pre/>
+
+<pre>   show_dsr(c->right);<pre/>
+<pre>   show_dsr(c->left);<pre/>
+<pre>              printf("Nodul (%s)\n",c->name);<pre/>
+<pre>               printf("Denumire: %s\n", c->name);<pre/>
+<pre>               printf("Importator: %s\n", c->distrib);<pre/>
+<pre>               printf("ID: %d\n", c->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", c->termen);<pre/>
+<pre>               printf("Pret: %f\n\n", c->pret);<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="23">void freemem_rsd(nod *c)</a><pre/>
+<pre> {   <pre/>
+<pre>     if(!c) return;<pre/>
+<pre>     freemem_rsd(c->left);<pre/>
+<pre>     freemem_rsd(c->right);<pre/>
+<pre>     free(c);<pre/>
+<pre> }<pre/>
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="24">nod* search_rsd(nod* c, char *fname)</a><pre/>
+<pre> {<pre/>
+<pre>     nod* t=NULL;<pre/>
+<pre>     if(!c) return NULL;<pre/>
+<pre>     if (!strcmp(c->name,fname)) return c;<pre/>
+<pre>     t=search_rsd(c->left,fname);<pre/>
+<pre>     if (t) return t;<pre/>
+<pre>     t=search_rsd(c->right,fname);<pre/>
+<pre>     if (t) return t;<pre/>
+<pre>     return NULL;<pre/>
+<pre> }<pre/>
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="25">int size_rsd(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>  int n=0;<pre/>
+<pre>     if(!c)<pre/>
+<pre>         return n;<pre/>
+    
+<pre>     return 1 + size_rsd(c->left) + size_rsd(c->right);<pre/>
+<pre> }<pre/>
+
+
+<a href="#proto">prototip</a><br>
+<a href="#home">home</a>
+<pre> <a name="26">int height_rsd(nod *c)</a><pre/>
+<pre> {<pre/>
+<pre>     int l=0,r=0;<pre/>
+<pre>     if(!c) return -1;<pre/>
+<pre>     l=1+height_rsd(c->left);<pre/>
+<pre>     r=1+height_rsd(c->right);<pre/>
+<pre>     if(l>r) return l;<pre/>
+<pre> else return r;<pre/>
+<pre> }<pre/>
+
+<pre>===============================================================<pre/>
+<pre>===============================================================<pre/>
+<pre>===============================================================<pre/>
+<pre>===============================================================<pre/>
+<pre>===============================================================<pre/>
+<pre>===============================================================<pre/>
+<pre> <a name="main">int main()</a> <pre/>
+<pre> {<pre/>
+<pre>     nod *t=NULL;<pre/>
+<pre>     char fname[100];<pre/>
+<pre>     int gxr = 0;<pre/>
+<pre>     do{<pre/>
+<pre>         start:<pre/>
+<pre>     system("cls");          <pre/>
+<br><a name="main2"></a>
+<pre>Coada (query)</pre>
+  <a href="#a1">[1] Crearea arborelui</a> <br>
+  <a href="#a2">[2] Afisarea arborelui</a> <br>
+  <a href="#a3">[3] Cautarea unui nod</a> <br>
+  <a href="#a4">[4] Marimea arborelui</a> <br>
+  <a href="#a5">[5] Inaltimea arborelui</a> <br>
+  <a href="#a6">[6] Eliberarea memoriei</a> <br>
+
+<pre>Stiva (stack)</pre>
+  <a href="#a11">[11] Crearea arborelui</a> <br>
+  <a href="#a12">[12] Afisarea arborelui</a> <br>
+  <a href="#a13">[13] Cautarea unui nod</a> <br>
+  <a href="#a14">[14] Marimea arberelui</a> <br>
+  <a href="#a15">[15] Inaltimea arberelui</a> <br>
+  <a href="#a16">[16] Eliberarea memoriei</a> <br>
+
+  <pre>Recursie  </pre>
+    <a href="#a21">[21] Crearea RSD</a> <br>
+    <a href="#a22">[22] Afisarea RSD</a> <br>
+    <a href="#a23">[23] Afisarea RDS</a> <br>
+    <a href="#a24">[24] Afisarea SRD</a> <br>
+    <a href="#a25">[25] Afisarea DRS</a> <br>
+    <a href="#a26">[26] Afisarea SDR</a> <br>
+    <a href="#a27">[27] Afisarea DSR</a> <br>
+    <a href="#a28">[28] Marimea arborelui</a> <br>
+    <a href="#a29">[29] Inaltimea arborelui</a> <br>
+    <a href="#a30">[30] Cautarea unui nod</a> <br>
+    <a href="#a31">[31] Eliberarea memoriei</a> <br>
+
+
+<pre>     switch (gxr)<pre/>
+<pre>     {<pre/>
+<pre>         <a name="a1">case 1:</a> {<pre/>
+<pre>         create_q();<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a2">case 2:</a> {<pre/>
+<pre>         show_q();<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a3">case 3:</a> {<pre/>
+<pre>         printf(" Introduceti numele de cautat: ");<pre/>
+<pre>         fflush(stdin);<pre/>
+<pre>         scanf("%s",&fname);<pre/>
+<pre>         t=search_q(fname);<pre/>
+<pre>         if(t){<pre/>
+            
+<pre>               printf("Nodul (%s)\n",t->name);<pre/>
+<pre>               printf("Importator: %s \n", t->distrib);<pre/>
+<pre>               printf("ID: %d \n", t->ID);<pre/>
+<pre>               printf("Livrare(zile): %d \n", t->termen);<pre/>
+<pre>               printf("Pret: %f \n", t->pret);<pre/>
+<pre>         } else {<pre/>
+<pre>             printf("[-] Nu exista asa nume!\n");}<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a4">case 4:</a> {<pre/>
+<pre>         printf(" Nodurile arborelui = %d\n",size_q());<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a5">case 5:</a> {<pre/>
+<pre>         printf("Inaltimea arborelui este %d \n", height_q(root));<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a6">case 6:</a> {<pre/>
+<pre>         freemem_q();<pre/>
+<pre>         root=NULL;<pre/>
+<pre>         printf("[+] Eliberarea memoriei a avut loc cu succes!\n");<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a11">case 11:</a> {<pre/>
+<pre>         creat_s();<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a12">case 12:</a> {<pre/>
+<pre>         show_s();<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a13">case 13:</a> {<pre/>
+<pre>          printf("Introduceti numele de cautat: ");<pre/>
+<pre>         fflush(stdin);<pre/>
+<pre>         scanf("%s",&fname);<pre/>
+<pre>         t=search_s(fname);<pre/>
+<pre>         if(t){<pre/>
+           
+<pre>               printf("Nodul (%s)\n",t->name);<pre/>
+<pre>               printf("Denumire: %s\n", t->name);<pre/>
+<pre>               printf("Importator: %s\n", t->distrib);<pre/>
+<pre>               printf("ID: %d\n", t->ID);<pre/>
+<pre>               printf("Livrare(zile): %d\n", t->termen);<pre/>
+<pre>               printf("Pret: %f\n\n", t->pret);<pre/>
+<pre>         } else    printf("[-] Nu exista asa nume!\n");<pre/>
+
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a14">case 14:</a> {<pre/>
+<pre>         printf("Nodurile arborelui = %d\n",size_s());<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a15">case 15:</a> {<pre/>
+<pre>         printf("Inaltimea arborelui = %d \n", height_s(root));<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a16">case 16:</a> {<pre/>
+<pre>         freemem_s();<pre/>
+<pre>         root=NULL;<pre/>
+<pre>         printf("[-] Eliberarea memoriei a avut loc cu succes!\n");<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre> <a name="a21">case 21:</a> {<pre/>
+<pre>         root = creat_rsd(NULL);<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a22">case 22:</a> {<pre/>
+<pre>         show_rsd(root);<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a23">case 23:</a> {<pre/>
+<pre>         show_rds(root);<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a24">case 24:</a> {<pre/>
+<pre>         show_srd(root);<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a25">case 25:</a> {<pre/>
+<pre>         show_drs(root);<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a26">case 26:</a> {<pre/>
+<pre>         show_sdr(root);<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a27">case 27:</a> {<pre/>
+<pre>         show_dsr(root);<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a28">case 28:</a> {<pre/>
+<pre>         printf(" Nodurile arborelui = %d\n",size_rsd(root));<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>              <a name="a29">case 29:</a> {<pre/>
+<pre>         printf("Inaltimea arborelui este %d \n", height_rsd(root));<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a30">case 30:</a> {<pre/>
+<pre>         printf(" Introduceti numele de cautat: ");<pre/>
+<pre>         fflush(stdin);<pre/>
+<pre>         scanf("%s",&fname);<pre/>
+<pre>         t=search_rsd(root,fname);<pre/>
+<pre>         if(t){<pre/>
+            
+<pre>               printf("Nodul (%s)\n",t->name);<pre/>
+<pre>               printf("Denumire: %s\n", t->name);<pre/>
+<pre>               printf("Importator: %s \n", t->distrib);<pre/>
+<pre>               printf("ID: %d \n", t->ID);<pre/>
+<pre>               printf("Livrare(zile): %d \n", t->termen);<pre/>
+<pre>               printf("Pret: %f \n", t->pret);<pre/>
+<pre>         } else {<pre/>
+<pre>             printf(" Nu exista asa nume!\n");}<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+        
+
+<a href="#main2">main</a><br><a href="#home">home</a>
+<pre>         <a name="a31">case 31:</a> {<pre/>
+<pre>         freemem_rsd(root);<pre/>
+<pre>         root=NULL;<pre/>
+<pre>         printf("[+] Eliberarea memoriei a avut loc cu succes!\n");<pre/>
+<pre>         system("PAUSE");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+       
+<pre>        case 0:{<pre/>
+<pre>         finish:<pre/>
+<pre>         system("pause");<pre/>
+<pre>         system("cls");<pre/>
+<pre>         return 0;<pre/>
+<pre>         }<pre/>
+
+<pre>         default:{<pre/>
+<pre>             int zx = 0;<pre/>
+<pre>         printf("[-] Gresit\n");<pre/>
+<pre>         puts("[1] Continuam programul\n[2] Iesim\n>> ");<pre/>
+<pre>         scanf("%d", &zx);<pre/>
+
+<pre>         if (zx == 1)    goto start;<pre/>
+<pre>         else    goto finish;<pre/>
+<pre>         system("cls");<pre/>
+<pre>         break;<pre/>
+<pre>         }<pre/>
+<pre>     }<pre/>
+<pre>     }<pre/>
+<pre>     while(gxr!=0);<pre/>
+<pre>     getch();<pre/>
+<pre>     return 0;<pre/>
+<pre> }<pre/>
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.30</VERSION>
+ <DEVICE>ATmega32</DEVICE>
+ <WORKING_DIR>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes\m32def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <RESET><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.asm</FILE><LINE>95</LINE></RESET>
+  <DisplayNext><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.asm</FILE><LINE>63</LINE></DisplayNext>
+  <end_dispaly><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.asm</FILE><LINE>88</LINE></end_dispaly>
+  <Message><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.asm</FILE><LINE>133</LINE></Message>
+  <MAIN><FILE>C:\Users\37379\Desktop\univeristate\III\sem2\PSM\Lab\l4\avr\4.asm</FILE><LINE>129</LINE></MAIN>
+ </LABELS>
+</ASSEMBLER_INFO>

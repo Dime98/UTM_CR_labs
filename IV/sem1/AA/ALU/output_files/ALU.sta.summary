@@ -1,0 +1,101 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'IC1[1]'
+Slack : -15.734
+TNS   : -622.650
+
+Type  : Slow 1100mV 85C Model Setup 'IC1[0]'
+Slack : -13.945
+TNS   : -500.274
+
+Type  : Slow 1100mV 85C Model Hold 'IC1[0]'
+Slack : -0.848
+TNS   : -0.848
+
+Type  : Slow 1100mV 85C Model Hold 'IC1[1]'
+Slack : 0.530
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'IC1[0]'
+Slack : 0.000
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'IC1[1]'
+Slack : 0.159
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'IC1[1]'
+Slack : -15.525
+TNS   : -613.022
+
+Type  : Slow 1100mV 0C Model Setup 'IC1[0]'
+Slack : -13.789
+TNS   : -490.692
+
+Type  : Slow 1100mV 0C Model Hold 'IC1[0]'
+Slack : -1.302
+TNS   : -1.302
+
+Type  : Slow 1100mV 0C Model Hold 'IC1[1]'
+Slack : 0.347
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'IC1[0]'
+Slack : -0.038
+TNS   : -0.068
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'IC1[1]'
+Slack : 0.136
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'IC1[1]'
+Slack : -8.043
+TNS   : -301.158
+
+Type  : Fast 1100mV 85C Model Setup 'IC1[0]'
+Slack : -7.370
+TNS   : -242.740
+
+Type  : Fast 1100mV 85C Model Hold 'IC1[0]'
+Slack : -0.099
+TNS   : -0.099
+
+Type  : Fast 1100mV 85C Model Hold 'IC1[1]'
+Slack : 0.259
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'IC1[0]'
+Slack : -0.290
+TNS   : -11.630
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'IC1[1]'
+Slack : -0.157
+TNS   : -2.372
+
+Type  : Fast 1100mV 0C Model Setup 'IC1[1]'
+Slack : -7.209
+TNS   : -268.759
+
+Type  : Fast 1100mV 0C Model Setup 'IC1[0]'
+Slack : -6.559
+TNS   : -210.843
+
+Type  : Fast 1100mV 0C Model Hold 'IC1[0]'
+Slack : -0.299
+TNS   : -0.299
+
+Type  : Fast 1100mV 0C Model Hold 'IC1[1]'
+Slack : 0.220
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'IC1[0]'
+Slack : -0.230
+TNS   : -9.173
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'IC1[1]'
+Slack : -0.128
+TNS   : -1.897
+
+------------------------------------------------------------

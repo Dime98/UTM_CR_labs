@@ -1,0 +1,44 @@
+|reg8bit
+clk => tmp[0].CLK
+clk => tmp[1].CLK
+clk => tmp[2].CLK
+clk => tmp[3].CLK
+clk => tmp[4].CLK
+clk => tmp[5].CLK
+clk => tmp[6].CLK
+clk => tmp[7].CLK
+SI => tmp.DATAA
+SLOAD => tmp.OUTPUTSELECT
+SLOAD => tmp.OUTPUTSELECT
+SLOAD => tmp.OUTPUTSELECT
+SLOAD => tmp.OUTPUTSELECT
+SLOAD => tmp.OUTPUTSELECT
+SLOAD => tmp.OUTPUTSELECT
+SLOAD => tmp.OUTPUTSELECT
+SLOAD => tmp.OUTPUTSELECT
+reset => tmp[0].ENA
+reset => tmp[7].ENA
+reset => tmp[6].ENA
+reset => tmp[5].ENA
+reset => tmp[4].ENA
+reset => tmp[3].ENA
+reset => tmp[2].ENA
+reset => tmp[1].ENA
+D[0] => tmp.DATAB
+D[1] => tmp.DATAB
+D[2] => tmp.DATAB
+D[3] => tmp.DATAB
+D[4] => tmp.DATAB
+D[5] => tmp.DATAB
+D[6] => tmp.DATAB
+D[7] => tmp.DATAB
+SO[0] << tmp[0].DB_MAX_OUTPUT_PORT_TYPE
+SO[1] << tmp[1].DB_MAX_OUTPUT_PORT_TYPE
+SO[2] << tmp[2].DB_MAX_OUTPUT_PORT_TYPE
+SO[3] << tmp[3].DB_MAX_OUTPUT_PORT_TYPE
+SO[4] << tmp[4].DB_MAX_OUTPUT_PORT_TYPE
+SO[5] << tmp[5].DB_MAX_OUTPUT_PORT_TYPE
+SO[6] << tmp[6].DB_MAX_OUTPUT_PORT_TYPE
+SO[7] << tmp[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
